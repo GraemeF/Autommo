@@ -54,6 +54,7 @@
       <DependentUpon>Combat.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\ApplicationSteps.cs" />
     <Compile Include="Steps\CombatSteps.cs" />
     <Compile Include="Steps\MobSteps.cs" />
     <Compile Include="Steps\MovementSteps.cs" />
@@ -66,7 +67,12 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Autommo.EndToEndTestEntities\Autommo.EndToEndTestEntities.csproj">
+      <Project>{323434E8-D5DC-4C6C-A4C0-A9B4D20DD758}</Project>
+      <Name>Autommo.EndToEndTestEntities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
