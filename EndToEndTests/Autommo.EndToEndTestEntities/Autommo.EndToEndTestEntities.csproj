@@ -39,6 +39,12 @@
     <Compile Include="AutommoServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Autommo.Console\Autommo.Console.csproj">
+      <Project>{F2BEC745-F667-4F08-AE82-A82642741524}</Project>
+      <Name>Autommo.Console</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
