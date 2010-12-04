@@ -11,7 +11,7 @@ namespace Autommo.EndToEndTestEntities
 #else
         private const string Configuration = "Release";
 #endif
-        private const string ServerFolder = @"..\..\..\Autommo.Console\bin\" + Configuration;
+        private const string ServerFolder = @"..\..\..\..\Autommo.Console\bin\" + Configuration;
         private const string ServerPath = ServerFolder + @"\Autommo.Console.exe";
 
         #region IDisposable Members
@@ -31,12 +31,25 @@ namespace Autommo.EndToEndTestEntities
 
         public AutommoServer()
         {
-            _process = Process.Start(ServerPath, "/port=8099");
+            _process = Process.Start(ServerPath, "/port:8099");
         }
 
         private void Dispose(bool disposing)
         {
-            _process.CloseMainWindow();
+            try
+            {
+                _process.CloseMainWindow();
+            }
+            catch (InvalidOperationException)
+            {
+                if (!_process.HasExited)
+                    throw;
+            }
+        }
+
+        public void AddMob()
+        {
+            throw new NotImplementedException();
         }
     }
 }

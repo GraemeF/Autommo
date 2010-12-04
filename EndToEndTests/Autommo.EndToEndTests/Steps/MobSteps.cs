@@ -3,12 +3,12 @@
 namespace Autommo.EndToEndTests.Steps
 {
     [Binding]
-    public class MobSteps
+    public class MobSteps : ServerSteps
     {
         [Given(@"there is a hostile mob")]
         public void GivenThereIsAHostileMob()
         {
-            ScenarioContext.Current.Pending();
+            Server.AddMob();
         }
     }
 }

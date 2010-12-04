@@ -1,4 +1,5 @@
-﻿using CommandLine;
+﻿using System.Threading;
+using CommandLine;
 
 namespace Autommo.Console
 {
@@ -16,8 +17,8 @@ namespace Autommo.Console
 
         private class Options
         {
-            [Argument(ArgumentType.Required, HelpText = "Port number to listen on.")]
-            public uint port = 8080;
+            [Argument(ArgumentType.AtMostOnce, HelpText = "Port number to listen on.")]
+            public int port = 8080;
         }
 
         #endregion
