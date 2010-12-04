@@ -16,9 +16,7 @@ namespace Autommo.EndToEndTests
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Combat")]
-    public partial class CombatFeature
+    public partial class CombatFeature : Xunit.IUseFixture<CombatFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -26,16 +24,18 @@ namespace Autommo.EndToEndTests
 #line 1 "Combat.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
-        public virtual void FeatureSetup()
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Combat", "In order to win epic loot\nAs a bot\nI want to kill things", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
-        public virtual void FeatureTearDown()
+        public virtual void SetFixture(CombatFeature.FixtureData fixtureData)
+        {
+        }
+        
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
@@ -46,14 +46,19 @@ namespace Autommo.EndToEndTests
             testRunner.OnScenarioStart(scenarioInfo);
         }
         
-        [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Enter combat")]
+        void System.IDisposable.Dispose()
+        {
+            this.ScenarioTearDown();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "Combat")]
+        [Xunit.TraitAttribute("Description", "Enter combat")]
         public virtual void EnterCombat()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Enter combat", ((string[])(null)));
@@ -67,6 +72,22 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("combat should begin");
 #line hidden
             testRunner.CollectScenarioErrors();
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.4.0.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
+        {
+            
+            public FixtureData()
+            {
+                CombatFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                CombatFeature.FeatureTearDown();
+            }
         }
     }
 }
