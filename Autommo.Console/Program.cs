@@ -1,5 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.ServiceModel;
+using System.ServiceModel.Web;
 using CommandLine;
+using Nancy.Hosting.Wcf;
 
 namespace Autommo.Console
 {
@@ -8,8 +11,16 @@ namespace Autommo.Console
         private static void Main(string[] args)
         {
             var options = new Options();
-            if (Parser.ParseArgumentsWithUsage(args, options))
+            if (!Parser.ParseArgumentsWithUsage(args, options))
+                return;
+
+            using (var host = new WebServiceHost(new NancyWcfGenericService(typeof (MobsModule).Assembly),
+                                                 new Uri("http://localhost:" + options.port)))
             {
+                host.AddServiceEndpoint(typeof (NancyWcfGenericService), new WebHttpBinding(), "");
+                host.Open();
+
+                System.Console.ReadLine();
             }
         }
 
