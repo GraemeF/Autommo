@@ -1,4 +1,5 @@
-﻿using Nancy;
+﻿using System.Net;
+using Nancy;
 
 namespace Autommo
 {
@@ -6,8 +7,7 @@ namespace Autommo
     {
         public MobsModule()
         {
-            Put["/mob"] = parameters => { return "This is the site route"; };
-            Get["/mob"] = parameters => { return "Hello, I'm Nancy!"; };
+            Post["/mob"] = parameters => { return HttpStatusCode.Created; };
         }
     }
 }

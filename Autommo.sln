@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autommo.EndToEndTestEntitie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autommo.Console", "Autommo.Console\Autommo.Console.csproj", "{F2BEC745-F667-4F08-AE82-A82642741524}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{F998D4D7-E85B-4082-8D5C-E935DDC42DB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autommo.Tests", "UnitTests\Autommo.Tests\Autommo.Tests.csproj", "{458B78CD-7F76-47C6-9DEE-528A39A741C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,16 @@ Global
 		{F2BEC745-F667-4F08-AE82-A82642741524}.Release|Mixed Platforms.Build.0 = Release|x86
 		{F2BEC745-F667-4F08-AE82-A82642741524}.Release|x86.ActiveCfg = Release|x86
 		{F2BEC745-F667-4F08-AE82-A82642741524}.Release|x86.Build.0 = Release|x86
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,5 +82,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D97BB86F-A959-4F05-B8B7-9D30C534B3B5} = {2DDAC3A3-4C9B-4EAA-91C0-D8CA59AF11E1}
 		{323434E8-D5DC-4C6C-A4C0-A9B4D20DD758} = {2DDAC3A3-4C9B-4EAA-91C0-D8CA59AF11E1}
+		{458B78CD-7F76-47C6-9DEE-528A39A741C2} = {F998D4D7-E85B-4082-8D5C-E935DDC42DB1}
 	EndGlobalSection
 EndGlobal

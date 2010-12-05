@@ -56,7 +56,7 @@ namespace Autommo.EndToEndTestEntities
             mob.Name = "Henry";
             mob.Health = 100;
 
-            client.Add(mob);
+            client.AddMob(mob);
         }
     }
 }
