@@ -31,8 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamicRest">
-      <HintPath>..\..\packages-manual\DynamicRest\DynamicRest.dll</HintPath>
+    <Reference Include="EasyHttp">
+      <HintPath>..\..\packages-manual\EasyHttp\EasyHttp.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonFx">
+      <HintPath>..\..\packages-manual\EasyHttp\JsonFx.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

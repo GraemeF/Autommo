@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using DynamicRest;
+using EasyHttp.Http;
 
 namespace Autommo.EndToEndTestEntities
 {
@@ -14,7 +14,7 @@ namespace Autommo.EndToEndTestEntities
 #endif
         private const string ServerFolder = @"..\..\..\..\Autommo.Console\bin\" + Configuration;
         private const string ServerPath = ServerFolder + @"\Autommo.Console.exe";
-        private static readonly Uri BaseUri = new Uri("http://localhost:8099");
+        private static readonly Uri BaseUri = new Uri("http://God:8099");
 
         #region IDisposable Members
 
@@ -51,12 +51,7 @@ namespace Autommo.EndToEndTestEntities
 
         public void AddMob()
         {
-            dynamic client = new RestClient(new Uri(BaseUri, "mob").AbsoluteUri, RestService.Json);
-            dynamic mob = new JsonObject();
-            mob.Name = "Henry";
-            mob.Health = 100;
-
-            client.AddMob(mob);
+            new HttpClient().Post(new Uri(BaseUri, "/mob").AbsoluteUri, null, HttpContentTypes.ApplicationJson);
         }
     }
 }
