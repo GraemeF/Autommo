@@ -1,37 +1,49 @@
-﻿using System;
-using System.ServiceModel;
-using System.ServiceModel.Web;
+﻿using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
+using System.IO;
+using System.Reflection;
 using CommandLine;
-using Nancy.Hosting.Wcf;
 
 namespace Autommo.Console
 {
     internal class Program
     {
+        private static ComposablePartCatalog GetCatalog()
+        {
+            DirectoryCatalog directoryCatalog = GetDirectoryCatalog();
+            var assemblyCatalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+
+            return new AggregateCatalog(directoryCatalog, assemblyCatalog);
+        }
+
+        private static DirectoryCatalog GetDirectoryCatalog()
+        {
+            return new DirectoryCatalog(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+        }
+
         private static void Main(string[] args)
         {
             var options = new Options();
             if (!Parser.ParseArgumentsWithUsage(args, options))
                 return;
 
-            using (var host = new WebServiceHost(new NancyWcfGenericService(typeof (MobsModule).Assembly),
-                                                 new Uri("http://localhost:" + options.port)))
-            {
-                host.AddServiceEndpoint(typeof (NancyWcfGenericService), new WebHttpBinding(), "");
-                host.Open();
-
+            using (StartServer(options))
                 System.Console.ReadLine();
-            }
         }
 
-        #region Nested type: Options
-
-        private class Options
+        private static IServer StartServer(Options options)
         {
-            [Argument(ArgumentType.AtMostOnce, HelpText = "Port number to listen on.")]
-            public int port = 8080;
+            IServer server = ComposeServer();
+
+            server.Port = options.port;
+            server.Start();
+
+            return server;
         }
 
-        #endregion
+        private static IServer ComposeServer()
+        {
+            return new CompositionContainer(GetCatalog()).GetExportedValue<IServer>();
+        }
     }
 }

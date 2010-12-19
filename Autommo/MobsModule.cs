@@ -1,9 +1,11 @@
-﻿using System.IO;
+﻿using System.ComponentModel.Composition;
+using System.IO;
 using System.Net;
 using Nancy;
 
 namespace Autommo
 {
+    [Export(typeof (NancyModule))]
     public class MobsModule : NancyModule
     {
         public MobsModule()
