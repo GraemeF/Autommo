@@ -53,7 +53,7 @@ namespace Autommo.EndToEndTestEntities
         public Mob AddMob()
         {
             var client = new HttpClient();
-            client.Post(new Uri(BaseUri, "/mob").AbsoluteUri, new Mob(), HttpContentTypes.ApplicationJson);
+            client.Post(new Uri(BaseUri, "/mob").AbsoluteUri, new Mob(), Schema.ContentType);
             
             return client.Response.StaticBody<Mob>();
         }

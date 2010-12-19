@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using System.IO;
 using System.Net;
 using Autommo.Dto;
 using Nancy;
@@ -10,15 +9,21 @@ namespace Autommo
     [Export(typeof (NancyModule))]
     public class MobsModule : NancyModule
     {
+        [ImportingConstructor]
         public MobsModule()
         {
             Post["/mob"] = parameters =>
                                {
-                                   return new JsonResponse<Mob>(new Mob())
-                                              {
-                                                  ContentType = "application/vnd.autommo+json",
-                                                  StatusCode = HttpStatusCode.Created
-                                              };
+                                   return
+                                       new JsonResponse<Mob>(new Mob
+                                                                 {
+                                                                     Location = new WorldLocation(),
+                                                                     Status = CombatStatus.Idle
+                                                                 })
+                                           {
+                                               ContentType = Schema.ContentType,
+                                               StatusCode = HttpStatusCode.Created
+                                           };
                                };
         }
     }
