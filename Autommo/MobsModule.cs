@@ -21,10 +21,5 @@ namespace Autommo
                                               };
                                };
         }
-
-        private void GetMob(Stream stream)
-        {
-            new StreamWriter(stream) {AutoFlush = true}.Write("<mob/>");
-        }
     }
 }
