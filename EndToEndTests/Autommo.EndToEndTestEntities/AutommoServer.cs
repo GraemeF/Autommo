@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Autommo.Dto;
 using EasyHttp.Http;
 
 namespace Autommo.EndToEndTestEntities
@@ -49,9 +50,12 @@ namespace Autommo.EndToEndTestEntities
             }
         }
 
-        public void AddMob()
+        public Mob AddMob()
         {
-            new HttpClient().Post(new Uri(BaseUri, "/mob").AbsoluteUri, null, HttpContentTypes.ApplicationJson);
+            var client = new HttpClient();
+            client.Post(new Uri(BaseUri, "/mob").AbsoluteUri, new Mob(), HttpContentTypes.ApplicationJson);
+            
+            return client.Response.StaticBody<Mob>();
         }
     }
 }

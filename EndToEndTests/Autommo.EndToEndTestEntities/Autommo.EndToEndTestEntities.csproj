@@ -50,6 +50,10 @@
       <Project>{F2BEC745-F667-4F08-AE82-A82642741524}</Project>
       <Name>Autommo.Console</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Autommo.Dto\Autommo.Dto.csproj">
+      <Project>{74EE7C59-2C32-4CA8-BD58-907EA3057114}</Project>
+      <Name>Autommo.Dto</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

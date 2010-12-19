@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autommo.Tests", "UnitTests\Autommo.Tests\Autommo.Tests.csproj", "{458B78CD-7F76-47C6-9DEE-528A39A741C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autommo.Dto", "Autommo.Dto\Autommo.Dto.csproj", "{74EE7C59-2C32-4CA8-BD58-907EA3057114}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,16 @@ Global
 		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{458B78CD-7F76-47C6-9DEE-528A39A741C2}.Release|x86.ActiveCfg = Release|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{74EE7C59-2C32-4CA8-BD58-907EA3057114}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
