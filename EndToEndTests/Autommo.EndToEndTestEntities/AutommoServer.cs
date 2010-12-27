@@ -15,7 +15,7 @@ namespace Autommo.EndToEndTestEntities
 #endif
         private const string ServerFolder = @"..\..\..\..\Autommo.Console\bin\" + Configuration;
         private const string ServerPath = ServerFolder + @"\Autommo.Console.exe";
-        private static readonly Uri BaseUri = new Uri("http://God:8099");
+        private static readonly Uri BaseUri = new Uri("http://127.0.0.1:8099");
 
         #region IDisposable Members
 
