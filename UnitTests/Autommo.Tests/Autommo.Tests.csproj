@@ -34,9 +34,6 @@
     <Reference Include="Moq">
       <HintPath>..\..\packages-manual\Moq\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy">
-      <HintPath>..\..\packages-manual\Nancy\Nancy.dll</HintPath>
-    </Reference>
     <Reference Include="Should.Fluent">
       <HintPath>..\..\packages\ShouldFluent.1.1.12.0\lib\Should.Fluent.dll</HintPath>
     </Reference>
@@ -62,6 +59,10 @@
     <ProjectReference Include="..\..\Autommo\Autommo.csproj">
       <Project>{144C2CAF-3FC8-49ED-8B4B-A92D1F556BB3}</Project>
       <Name>Autommo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\packages-submodules\Nancy\src\Nancy\Nancy.csproj">
+      <Project>{34576216-0DCA-4B0F-A0DC-9075E75A676F}</Project>
+      <Name>Nancy</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
