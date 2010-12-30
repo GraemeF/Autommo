@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Project DefaultTargets="FullPublish"
+		 xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+		 ToolsVersion="3.5">
+	<PropertyGroup>
+		<ApplicationVersion Condition="'$(ApplicationVersion)'==''">0.0.0.0</ApplicationVersion>
+		<PublishDir Condition="'$(PublishDir)'==''">Publish</PublishDir>
+		<InnerTarget Condition="'$(InnerTarget)'==''">Build</InnerTarget>
+		<BuildPath>Build\</BuildPath>
+		<GallioTestRunner Condition="'$(GallioTestRunner)'==''">IsolatedAppDomain</GallioTestRunner>
+	</PropertyGroup>
+	<Target Name="MSBuildSelfExtractingExe">
+		<Message Text="Application version is $(ApplicationVersion)" />
+		<MSBuild Projects="Autommo.sln"
+				 Targets="$(InnerTarget)"
+				 Properties="ApplicationVersion=$(ApplicationVersion);GallioTestRunner=$(GallioTestRunner);RunAcceptanceTests=$(RunAcceptanceTests)"
+				 StopOnFirstFailure="true"
+				 BuildInParallel="true" />
+	</Target>
+
+	<Target Name="MergeCodeCoverageReports"
+			DependsOnTargets="MSBuildSelfExtractingExe">
+		<Exec Command='"$(NCoverExplorerPath)" .\Reports\*.coverage.xml /s:.\Reports\ncover-fullreport.xml' />
+		<Message Text="##teamcity[importData type='dotNetCoverage' tool='$(GallioTestRunner)' path='Reports\ncover-fullreport.xml']" />
+	</Target>
+
+	<PropertyGroup>
+		<FullPublishDependsOn>
+			MSBuildSelfExtractingExe
+		</FullPublishDependsOn>
+	</PropertyGroup>
+	<Target Name="FullPublish"
+			DependsOnTargets="$(FullPublishDependsOn)" />
+</Project>
