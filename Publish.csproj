@@ -8,12 +8,13 @@
 		<InnerTarget Condition="'$(InnerTarget)'==''">Build</InnerTarget>
 		<BuildPath>Build\</BuildPath>
 		<GallioTestRunner Condition="'$(GallioTestRunner)'==''">IsolatedAppDomain</GallioTestRunner>
+		<TreatFailedTestsAsErrors Condition="'$(TreatFailedTestsAsErrors)'==''">true</TreatFailedTestsAsErrors>
 	</PropertyGroup>
 	<Target Name="MSBuildSelfExtractingExe">
 		<Message Text="Application version is $(ApplicationVersion)" />
 		<MSBuild Projects="Autommo.sln"
 				 Targets="$(InnerTarget)"
-				 Properties="ApplicationVersion=$(ApplicationVersion);GallioTestRunner=$(GallioTestRunner);RunAcceptanceTests=$(RunAcceptanceTests)"
+				 Properties="ApplicationVersion=$(ApplicationVersion);GallioTestRunner=$(GallioTestRunner);RunAcceptanceTests=$(RunAcceptanceTests);TreatFailedTestsAsErrors=$(TreatFailedTestsAsErrors)"
 				 StopOnFirstFailure="true"
 				 BuildInParallel="true" />
 	</Target>
