@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net;
+using System.Threading;
 using Autommo.Dto;
 using EasyHttp.Http;
 
@@ -35,6 +37,32 @@ namespace Autommo.EndToEndTestEntities
         public AutommoServer()
         {
             _process = Process.Start(ServerPath, "/port:8099");
+
+            WaitForServerToStartResponding();
+        }
+
+        private void WaitForServerToStartResponding()
+        {
+            for (int remainingTries = 50; remainingTries >= 0; remainingTries--)
+            {
+                try
+                {
+                    PingServer();
+                    break;
+                }
+                catch (WebException)
+                {
+                    if (remainingTries == 0)
+                        throw;
+
+                    Thread.Sleep(100);
+                }
+            }
+        }
+
+        private void PingServer()
+        {
+            new HttpClient().Get(new Uri(BaseUri, "status").AbsoluteUri);
         }
 
         private void Dispose(bool disposing)
@@ -54,7 +82,7 @@ namespace Autommo.EndToEndTestEntities
         {
             var client = new HttpClient();
             client.Post(new Uri(BaseUri, "/mob").AbsoluteUri, new Mob(), Schema.ContentType);
-            
+
             return client.Response.StaticBody<Mob>();
         }
     }
