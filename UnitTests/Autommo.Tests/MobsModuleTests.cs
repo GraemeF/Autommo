@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using Autommo.Dto;
+using JsonFx.Json;
 using Nancy;
 using Nancy.Extensions;
 using Nancy.Routing;
@@ -28,7 +30,7 @@ namespace Autommo.Tests
         {
             IRoute route = GetRoute(new Request("POST", "/mob"));
 
-            GetStringContentsFromResponse(route.Invoke()).Should().Equal("<mob/>");
+            GetDeserializedContentsFromResponse<Mob>(route.Invoke()).Should().Be.OfType(typeof (Mob));
         }
 
         private IRoute GetRoute(Request request)
@@ -39,14 +41,14 @@ namespace Autommo.Tests
             return _resolver.GetRoute(request, descriptions);
         }
 
-        private static string GetStringContentsFromResponse(Response response)
+        private static TContents GetDeserializedContentsFromResponse<TContents>(Response response)
         {
             var memory = new MemoryStream();
             response.Contents.Invoke(memory);
             memory.Position = 0;
 
             using (var reader = new StreamReader(memory))
-                return reader.ReadToEnd();
+                return new JsonReader().Read<TContents>(reader);
         }
     }
 }

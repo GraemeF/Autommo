@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JsonFx">
+      <HintPath>..\..\packages-submodules\EasyHttp\src\packages\jsonfx\JsonFx.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\packages-manual\Moq\Moq.dll</HintPath>
     </Reference>
@@ -56,6 +59,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Autommo.Dto\Autommo.Dto.csproj">
+      <Project>{74EE7C59-2C32-4CA8-BD58-907EA3057114}</Project>
+      <Name>Autommo.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Autommo\Autommo.csproj">
       <Project>{144C2CAF-3FC8-49ED-8B4B-A92D1F556BB3}</Project>
       <Name>Autommo</Name>
