@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="MobsModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorldModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Autommo.Dto\Autommo.Dto.csproj">
