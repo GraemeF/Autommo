@@ -49,8 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cylinder.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="IWorld.cs" />
+    <Compile Include="Point.cs" />
+    <Compile Include="UnitPosition.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
