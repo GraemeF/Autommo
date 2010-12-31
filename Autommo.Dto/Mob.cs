@@ -3,6 +3,6 @@
     public class Mob
     {
         public WorldLocation Location { get; set; }
-        public CombatStatus Status { get; set; }
+        public string Status { get; set; }
     }
 }

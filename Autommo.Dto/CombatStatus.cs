@@ -1,8 +1,8 @@
 ﻿namespace Autommo.Dto
 {
-    public enum CombatStatus
+    public static class CombatStatus
     {
-        Idle,
-        Fighting
+        public const string Idle = "Idle";
+        public const string Fighting = "Fighting";
     }
 }
