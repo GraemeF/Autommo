@@ -3,7 +3,7 @@
     public interface IUnit
     {
         UnitPosition Position { get; }
-        decimal MeleeRange { get; }
-        decimal VisibilityRange { get; }
+        Length MeleeRange { get; }
+        Length VisibilityRange { get; }
     }
 }

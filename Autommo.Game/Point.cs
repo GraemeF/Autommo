@@ -2,15 +2,15 @@
 {
     public class Point
     {
-        public Point(decimal x, decimal y, decimal z)
+        public Point(Length x, Length y, Length z)
         {
             X = x;
             Y = y;
             Z = z;
         }
 
-        public decimal X { get; private set; }
-        public decimal Y { get; private set; }
-        public decimal Z { get; private set; }
+        public Length X { get; private set; }
+        public Length Y { get; private set; }
+        public Length Z { get; private set; }
     }
 }
