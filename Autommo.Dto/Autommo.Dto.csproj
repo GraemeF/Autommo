@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CombatStatus.cs" />
     <Compile Include="Schema.cs" />
     <Compile Include="WorldPoint.cs" />
     <Compile Include="Mob.cs" />

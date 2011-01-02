@@ -19,7 +19,7 @@ namespace Autommo
                                        new JsonResponse<Mob>(new Mob
                                                                  {
                                                                      Location = new WorldLocation(),
-                                                                     Status = CombatStatus.Idle
+                                                                     Status = "Idle"
                                                                  })
                                            {
                                                ContentType = Schema.ContentType,

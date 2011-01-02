@@ -1,6 +1,8 @@
-﻿namespace Autommo.Game.Interfaces
+﻿using System.ComponentModel;
+
+namespace Autommo.Game.Interfaces
 {
-    public interface IUnit
+    public interface IUnit : INotifyPropertyChanged
     {
         UnitPosition Position { get; }
         Length MeleeRange { get; }
