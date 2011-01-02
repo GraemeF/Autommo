@@ -79,14 +79,15 @@
 					ItemName="FileWrites" />
 		</CreateItem>
 
-		<CreateProperty Condition="'$(UnitTestResult)' != '0' and '$(UnitTestResult)' != '3'">
+		<CreateProperty Condition="'$(UnitTestResult)' == '0' or '$(UnitTestResult)' == '3'"
+						Value="true">
 			<Output TaskParameter="Value"
-					PropertyName="true"/>
+					PropertyName="AllTestsPassed"/>
 		</CreateProperty>
 
 		<Error Condition="'$(AllTestsPassed)' != 'true' and '$(TreatFailedTestsAsErrors)' == 'true'"
 			   Code="$(UnitTestResult)"
-			   Text="Gallio tests failed in @(GallioTestFixtureAssembly->'%(Filename)')." />
+			   Text="Tests failed in @(GallioTestFixtureAssembly->'%(Filename)')." />
 
 		<!-- If a unit tests succeeded update the timestamp of the file indicating that they passed -->
 		<WriteLinesToFile Condition="'$(AllTestsPassed)' == 'true'"
