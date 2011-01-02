@@ -1,6 +1,6 @@
 ﻿using ReactiveXaml;
 
-namespace Autommo.Game
+namespace Autommo.Game.Interfaces
 {
     public interface IWorld
     {

@@ -1,4 +1,5 @@
-﻿using ReactiveXaml;
+﻿using Autommo.Game.Interfaces;
+using ReactiveXaml;
 
 namespace Autommo.Game
 {
