@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Autommo.Game.Interfaces;
 using Moq;
@@ -10,20 +11,22 @@ namespace Autommo.Game.Tests
 {
     public class PlayerTests
     {
-        private readonly IAutoAttacker _meleeAttacker =
-            Mocks.Of<IAutoAttacker>().
-                First(autoAttacker =>
-                      autoAttacker.Changed ==
-                      Mocks.Of<IObservable<IObservedChange<object, object>>>().
-                          First(observable =>
-                                observable.Subscribe(It.IsAny<IObserver<IObservedChange<object, object>>>()) ==
-                                Mock.Of<IDisposable>()));
+        private readonly IAutoAttacker _meleeAttacker;
 
         private readonly IUnit _newTarget = Mock.Of<IUnit>();
         private readonly Player _test;
 
+        private readonly Subject<IObservedChange<object, object>> changed =
+            new Subject<IObservedChange<object, object>>();
+
+        private readonly IObservable<IObservedChange<object, object>> changing =
+            new Subject<IObservedChange<object, object>>();
+
         public PlayerTests()
         {
+            _meleeAttacker = Mocks.Of<IAutoAttacker>().
+                First(autoAttacker => autoAttacker.Changed == changed &&
+                                      autoAttacker.Changing == changing);
             _test = new Player(_meleeAttacker);
         }
 
@@ -40,11 +43,17 @@ namespace Autommo.Game.Tests
         [Fact]
         public void GettingCombatStatus_WhenAttackerIsAttacking_ReturnsFighting()
         {
-            Mock.Get(_meleeAttacker).
-                Setup(x => x.IsAttacking).
-                Returns(true);
+            AttackerIsAttackingChangesTo(true);
 
             _test.CombatStatus.Should().Equal(CombatStatus.Fighting);
+        }
+
+        private void AttackerIsAttackingChangesTo(bool isAttacking)
+        {
+            Mock.Get(_meleeAttacker).
+                Setup(x => x.IsAttacking).
+                Returns(isAttacking);
+            changed.OnNext(new ObservedChange<object, object> {PropertyName = "IsAttacking", Value = isAttacking});
         }
 
         [Fact]

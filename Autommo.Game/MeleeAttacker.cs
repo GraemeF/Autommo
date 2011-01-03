@@ -1,5 +1,4 @@
-﻿using System;
-using Autommo.Game.Interfaces;
+﻿using Autommo.Game.Interfaces;
 using ReactiveXaml;
 
 namespace Autommo.Game
@@ -33,6 +32,7 @@ namespace Autommo.Game
         public void Attack(IUnit target)
         {
             Target = target;
+            IsAttacking = true;
         }
 
         #endregion

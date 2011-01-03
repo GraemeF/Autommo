@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Autommo.Game.Interfaces;
 using ReactiveXaml;
 
@@ -15,10 +16,12 @@ namespace Autommo.Game
             _meleeAttacker = meleeAttacker;
 
             Subscriptions.Add(_meleeAttacker.
-                                  ObservableForProperty(x => x.IsAttacking).
-                                  Subscribe(x => CombatStatus = x.Value
-                                                                    ? CombatStatus.Fighting
-                                                                    : CombatStatus.Idle));
+                                  ObservableForProperty(autoAttacker => autoAttacker.IsAttacking).
+                                  Select(change => change.Value).
+                                  StartWith(_meleeAttacker.IsAttacking).
+                                  Subscribe(isAttacking => CombatStatus = isAttacking
+                                                                              ? CombatStatus.Fighting
+                                                                              : CombatStatus.Idle));
         }
 
         public CombatStatus CombatStatus
