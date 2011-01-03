@@ -12,7 +12,12 @@ namespace Autommo.Game.Tests
     {
         private readonly IAutoAttacker _meleeAttacker =
             Mocks.Of<IAutoAttacker>().
-                First(x => x.Changed == Mock.Of<IObservable<IObservedChange<object, object>>>());
+                First(autoAttacker =>
+                      autoAttacker.Changed ==
+                      Mocks.Of<IObservable<IObservedChange<object, object>>>().
+                          First(observable =>
+                                observable.Subscribe(It.IsAny<IObserver<IObservedChange<object, object>>>()) ==
+                                Mock.Of<IDisposable>()));
 
         private readonly IUnit _newTarget = Mock.Of<IUnit>();
         private readonly Player _test;
