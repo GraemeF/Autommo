@@ -7,13 +7,33 @@ namespace Autommo.Game.Tests
 {
     public class PlayerTests
     {
-        private readonly Player _test = new Player();
+        private readonly IAutoAttacker _meleeAttacker = Mock.Of<IAutoAttacker>();
         private readonly IUnit _newTarget = Mock.Of<IUnit>();
+        private readonly Player _test;
+
+        public PlayerTests()
+        {
+            _test = new Player(_meleeAttacker);
+        }
 
         [Fact]
-        public void CombatStatus_Initially_IsIdle()
+        public void GettingCombatStatus_WhenNotAttacking_ReturnsIdle()
         {
+            Mock.Get(_meleeAttacker).
+                Setup(x => x.IsAttacking).
+                Returns(false);
+
             _test.CombatStatus.Should().Equal(CombatStatus.Idle);
+        }
+
+        [Fact]
+        public void GettingCombatStatus_WhenAttackerIsAttacking_ReturnsFighting()
+        {
+            Mock.Get(_meleeAttacker).
+                Setup(x => x.IsAttacking).
+                Returns(true);
+
+            _test.CombatStatus.Should().Equal(CombatStatus.Fighting);
         }
 
         [Fact]

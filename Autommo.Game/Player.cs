@@ -7,7 +7,19 @@ namespace Autommo.Game
     public class Player : Model, IPlayer
     {
         private readonly CombatStatus _CombatStatus = CombatStatus.Idle;
+        private readonly IAutoAttacker _meleeAttacker;
         private IUnit _Target;
+
+        public Player(IAutoAttacker meleeAttacker)
+        {
+            _meleeAttacker = meleeAttacker;
+
+            Subscriptions.Add(_meleeAttacker.
+                                  ObservableForProperty(x => x.IsAttacking).
+                                  Subscribe(x => CombatStatus = x.Value
+                                                                    ? CombatStatus.Fighting
+                                                                    : CombatStatus.Idle));
+        }
 
         public CombatStatus CombatStatus
         {

@@ -34,9 +34,6 @@
     <Reference Include="Moq">
       <HintPath>..\..\packages-manual\Moq\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="ReactiveXaml">
-      <HintPath>..\..\packages-manual\ReactiveXaml\ReactiveXaml.dll</HintPath>
-    </Reference>
     <Reference Include="Should.Fluent">
       <HintPath>..\..\packages\ShouldFluent.1.1.12.0\lib\Should.Fluent.dll</HintPath>
     </Reference>
@@ -50,8 +47,12 @@
     <Reference Include="xunit, Version=1.6.1.1521, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\packages-submodules\Gallio\bin\Xunit\xunit.dll</HintPath>
     </Reference>
+    <Reference Include="xunit.extensions">
+      <HintPath>..\..\packages-submodules\Gallio\bin\Xunit\xunit.extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MeleeAttackerTests.cs" />
     <Compile Include="PlayerTests.cs" />
     <Compile Include="WorldTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +72,10 @@
     <ProjectReference Include="..\..\Autommo.Game\Autommo.Game.csproj">
       <Project>{8E7298C6-8BC3-48A1-B2E9-03B3F6121095}</Project>
       <Name>Autommo.Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\packages-submodules\ReactiveXaml\ReactiveXaml\ReactiveXaml.csproj">
+      <Project>{292A477B-BB94-43C1-984E-E177EF9FEDB7}</Project>
+      <Name>ReactiveXaml</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
