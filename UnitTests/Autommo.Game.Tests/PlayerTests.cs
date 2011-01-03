@@ -1,5 +1,8 @@
-﻿using Autommo.Game.Interfaces;
+﻿using System;
+using System.Linq;
+using Autommo.Game.Interfaces;
 using Moq;
+using ReactiveXaml;
 using Should.Fluent;
 using Xunit;
 
@@ -7,7 +10,10 @@ namespace Autommo.Game.Tests
 {
     public class PlayerTests
     {
-        private readonly IAutoAttacker _meleeAttacker = Mock.Of<IAutoAttacker>();
+        private readonly IAutoAttacker _meleeAttacker =
+            Mocks.Of<IAutoAttacker>().
+                First(x => x.Changed == Mock.Of<IObservable<IObservedChange<object, object>>>());
+
         private readonly IUnit _newTarget = Mock.Of<IUnit>();
         private readonly Player _test;
 

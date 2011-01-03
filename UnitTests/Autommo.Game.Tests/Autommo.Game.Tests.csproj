@@ -34,16 +34,20 @@
     <Reference Include="Moq">
       <HintPath>..\..\packages-manual\Moq\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="Should.Fluent">
       <HintPath>..\..\packages\ShouldFluent.1.1.12.0\lib\Should.Fluent.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
     <Reference Include="xunit, Version=1.6.1.1521, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\packages-submodules\Gallio\bin\Xunit\xunit.dll</HintPath>
     </Reference>
