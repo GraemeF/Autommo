@@ -9,13 +9,13 @@ namespace Autommo.Game
         private Length _MaxRange;
         private IUnit _Target;
 
+        #region IAutoAttacker Members
+
         public IUnit Target
         {
             get { return _Target; }
             private set { this.RaiseAndSetIfChanged(x => x.Target, value); }
         }
-
-        #region IAutoAttacker Members
 
         public bool IsAttacking
         {

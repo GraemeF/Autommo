@@ -16,12 +16,14 @@ namespace Autommo.Game.Tests
             new Subject<IObservedChange<object, object>>();
 
         private readonly IUnit _newTarget = Mock.Of<IUnit>();
+        private readonly IUnit _originalTarget = Mock.Of<IUnit>();
         private readonly Player _test;
 
         public PlayerTests()
         {
             _meleeAttacker = Mocks.Of<IAutoAttacker>().
-                First(autoAttacker => autoAttacker.Changed == _meleeAttackerPropertyChanged);
+                First(autoAttacker => autoAttacker.Changed == _meleeAttackerPropertyChanged &&
+                                      autoAttacker.Target == _originalTarget);
             _test = new Player(_meleeAttacker);
         }
 
@@ -42,19 +44,28 @@ namespace Autommo.Game.Tests
         }
 
         [Fact]
-        public void Attack_GivenATarget_EntersCombat()
+        public void GettingTarget__ReturnsMeleeTarget()
         {
-            _test.Attack(_newTarget);
-
-            _test.CombatStatus.Should().Equal(CombatStatus.Fighting);
+            _test.Target.Should().Be.SameAs(_originalTarget);
         }
 
         [Fact]
-        public void Attack_GivenATarget_TargetsTarget()
+        public void Target_WhenMeleeTargetChanges_IsChanged()
+        {
+            bool changed = false;
+            _test.ObservableForProperty(x => x.Target).
+                Subscribe(Observer.Create<IObservedChange<Player, IUnit>>(x => changed = true));
+
+            AttackerTargetChangesTo(_newTarget);
+            changed.Should().Be.True();
+        }
+
+        [Fact]
+        public void Attack_GivenATarget_AttacksTarget()
         {
             _test.Attack(_newTarget);
 
-            _test.Target.Should().Be.SameAs(_newTarget);
+            Mock.Get(_meleeAttacker).Verify(x => x.Attack(_newTarget));
         }
 
         private void AttackerStopsAttacking()
@@ -78,6 +89,20 @@ namespace Autommo.Game.Tests
                            {
                                PropertyName = "IsAttacking",
                                Value = newValue
+                           });
+        }
+
+        private void AttackerTargetChangesTo(IUnit newTarget)
+        {
+            Mock.Get(_meleeAttacker).
+                Setup(x => x.Target).
+                Returns(newTarget);
+
+            _meleeAttackerPropertyChanged.
+                OnNext(new ObservedChange<object, object>
+                           {
+                               PropertyName = "Target",
+                               Value = newTarget
                            });
         }
     }

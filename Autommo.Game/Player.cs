@@ -22,6 +22,11 @@ namespace Autommo.Game
                                   Subscribe(isAttacking => CombatStatus = isAttacking
                                                                               ? CombatStatus.Fighting
                                                                               : CombatStatus.Idle));
+            Subscriptions.Add(_meleeAttacker.
+                                  ObservableForProperty(autoAttacker => autoAttacker.Target).
+                                  Select(change => change.GetValue()).
+                                  StartWith(_meleeAttacker.Target).
+                                  Subscribe(target => Target = target));
         }
 
         public CombatStatus CombatStatus
@@ -62,8 +67,7 @@ namespace Autommo.Game
 
         public void Attack(IUnit target)
         {
-            Target = target;
-            CombatStatus = CombatStatus.Fighting;
+            _meleeAttacker.Attack(target);
         }
     }
 }
