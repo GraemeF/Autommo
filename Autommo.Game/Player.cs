@@ -17,7 +17,7 @@ namespace Autommo.Game
 
             Subscriptions.Add(_meleeAttacker.
                                   ObservableForProperty(autoAttacker => autoAttacker.IsAttacking).
-                                  Select(change => change.Value).
+                                  Select(change => change.GetValue()).
                                   StartWith(_meleeAttacker.IsAttacking).
                                   Subscribe(isAttacking => CombatStatus = isAttacking
                                                                               ? CombatStatus.Fighting

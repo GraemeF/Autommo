@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Autommo.Game.Interfaces;
 using Moq;
@@ -13,29 +12,23 @@ namespace Autommo.Game.Tests
     {
         private readonly IAutoAttacker _meleeAttacker;
 
+        private readonly Subject<IObservedChange<object, object>> _meleeAttackerPropertyChanged =
+            new Subject<IObservedChange<object, object>>();
+
         private readonly IUnit _newTarget = Mock.Of<IUnit>();
         private readonly Player _test;
-
-        private readonly Subject<IObservedChange<object, object>> changed =
-            new Subject<IObservedChange<object, object>>();
-
-        private readonly IObservable<IObservedChange<object, object>> changing =
-            new Subject<IObservedChange<object, object>>();
 
         public PlayerTests()
         {
             _meleeAttacker = Mocks.Of<IAutoAttacker>().
-                First(autoAttacker => autoAttacker.Changed == changed &&
-                                      autoAttacker.Changing == changing);
+                First(autoAttacker => autoAttacker.Changed == _meleeAttackerPropertyChanged);
             _test = new Player(_meleeAttacker);
         }
 
         [Fact]
         public void GettingCombatStatus_WhenNotAttacking_ReturnsIdle()
         {
-            Mock.Get(_meleeAttacker).
-                Setup(x => x.IsAttacking).
-                Returns(false);
+            AttackerStopsAttacking();
 
             _test.CombatStatus.Should().Equal(CombatStatus.Idle);
         }
@@ -43,17 +36,9 @@ namespace Autommo.Game.Tests
         [Fact]
         public void GettingCombatStatus_WhenAttackerIsAttacking_ReturnsFighting()
         {
-            AttackerIsAttackingChangesTo(true);
+            AttackerBeginsAttacking();
 
             _test.CombatStatus.Should().Equal(CombatStatus.Fighting);
-        }
-
-        private void AttackerIsAttackingChangesTo(bool isAttacking)
-        {
-            Mock.Get(_meleeAttacker).
-                Setup(x => x.IsAttacking).
-                Returns(isAttacking);
-            changed.OnNext(new ObservedChange<object, object> {PropertyName = "IsAttacking", Value = isAttacking});
         }
 
         [Fact]
@@ -70,6 +55,30 @@ namespace Autommo.Game.Tests
             _test.Attack(_newTarget);
 
             _test.Target.Should().Be.SameAs(_newTarget);
+        }
+
+        private void AttackerStopsAttacking()
+        {
+            AttackerIsAttackingChangesTo(false);
+        }
+
+        private void AttackerBeginsAttacking()
+        {
+            AttackerIsAttackingChangesTo(true);
+        }
+
+        private void AttackerIsAttackingChangesTo(bool newValue)
+        {
+            Mock.Get(_meleeAttacker).
+                Setup(x => x.IsAttacking).
+                Returns(newValue);
+
+            _meleeAttackerPropertyChanged.
+                OnNext(new ObservedChange<object, object>
+                           {
+                               PropertyName = "IsAttacking",
+                               Value = newValue
+                           });
         }
     }
 }
