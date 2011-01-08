@@ -1,16 +1,19 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using Nancy;
-using Nancy.Hosting.Wcf;
-
-namespace Autommo.Console
+﻿namespace Autommo.Console
 {
-    [Export(typeof (IServer))]
-    public class Server : IDisposable, IServer
+    using System;
+    using System.ComponentModel.Composition;
+    using System.ServiceModel;
+    using System.ServiceModel.Web;
+
+    using Nancy;
+    using Nancy.Hosting.Wcf;
+
+    [Export(typeof(IServer))]
+    public class Server : IDisposable,
+                          IServer
     {
         private readonly INancyModuleLocator _moduleLocator;
+
         private WebServiceHost _host;
 
         [ImportingConstructor]
@@ -19,7 +22,9 @@ namespace Autommo.Console
             _moduleLocator = moduleLocator;
         }
 
-        #region IDisposable Members
+        public int Port { get; set; }
+
+        #region IDisposable members
 
         public void Dispose()
         {
@@ -29,16 +34,14 @@ namespace Autommo.Console
 
         #endregion
 
-        #region IServer Members
-
-        public int Port { get; set; }
+        #region IServer members
 
         public void Start()
         {
             _host = new WebServiceHost(new NancyWcfGenericService(_moduleLocator),
                                        new Uri("http://localhost:" + Port));
 
-            _host.AddServiceEndpoint(typeof (NancyWcfGenericService), new WebHttpBinding(), "");
+            _host.AddServiceEndpoint(typeof(NancyWcfGenericService), new WebHttpBinding(), "");
             _host.Open();
         }
 

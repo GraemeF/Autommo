@@ -1,20 +1,18 @@
-﻿using Autommo.Game.Interfaces;
-using Moq;
-using Should.Fluent;
-using Xunit;
-
-namespace Autommo.Game.Tests
+﻿namespace Autommo.Game.Tests
 {
+    using Autommo.Game.Interfaces;
+
+    using Moq;
+
+    using Should.Fluent;
+
+    using Xunit;
+
     public class MeleeAttackerTests
     {
         private readonly IUnit _newTarget = Mock.Of<IUnit>();
-        private readonly MeleeAttacker _test = new MeleeAttacker();
 
-        [Fact]
-        public void GettingIsAttacking_Initially_ReturnsFalse()
-        {
-            _test.IsAttacking.Should().Be.False();
-        }
+        private readonly MeleeAttacker _test = new MeleeAttacker();
 
         [Fact]
         public void Attack_GivenATarget_EntersCombat()
@@ -30,6 +28,12 @@ namespace Autommo.Game.Tests
             _test.Attack(_newTarget);
 
             _test.Target.Should().Be.SameAs(_newTarget);
+        }
+
+        [Fact]
+        public void GettingIsAttacking_Initially_ReturnsFalse()
+        {
+            _test.IsAttacking.Should().Be.False();
         }
     }
 }

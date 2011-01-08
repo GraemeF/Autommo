@@ -1,8 +1,9 @@
-﻿using Should.Fluent;
-using Xunit;
-
-namespace Autommo.Game.Tests
+﻿namespace Autommo.Game.Tests
 {
+    using Should.Fluent;
+
+    using Xunit;
+
     public class WorldTests
     {
         private readonly World _test = new World();

@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Autommo.Game.Interfaces;
-using Moq;
-using ReactiveXaml;
-using Should.Fluent;
-using Xunit;
-
-namespace Autommo.Game.Tests
+﻿namespace Autommo.Game.Tests
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using Autommo.Game.Interfaces;
+
+    using Moq;
+
+    using ReactiveXaml;
+
+    using Should.Fluent;
+
+    using Xunit;
+
     public class PlayerTests
     {
         private readonly IAutoAttacker _meleeAttacker;
@@ -16,7 +21,9 @@ namespace Autommo.Game.Tests
             new Subject<IObservedChange<object, object>>();
 
         private readonly IUnit _newTarget = Mock.Of<IUnit>();
+
         private readonly IUnit _originalTarget = Mock.Of<IUnit>();
+
         private readonly Player _test;
 
         public PlayerTests()
@@ -28,11 +35,11 @@ namespace Autommo.Game.Tests
         }
 
         [Fact]
-        public void GettingCombatStatus_WhenNotAttacking_ReturnsIdle()
+        public void Attack_GivenATarget_AttacksTarget()
         {
-            AttackerStopsAttacking();
+            _test.Attack(_newTarget);
 
-            _test.CombatStatus.Should().Equal(CombatStatus.Idle);
+            Mock.Get(_meleeAttacker).Verify(x => x.Attack(_newTarget));
         }
 
         [Fact]
@@ -41,6 +48,14 @@ namespace Autommo.Game.Tests
             AttackerBeginsAttacking();
 
             _test.CombatStatus.Should().Equal(CombatStatus.Fighting);
+        }
+
+        [Fact]
+        public void GettingCombatStatus_WhenNotAttacking_ReturnsIdle()
+        {
+            AttackerStopsAttacking();
+
+            _test.CombatStatus.Should().Equal(CombatStatus.Idle);
         }
 
         [Fact]
@@ -60,19 +75,6 @@ namespace Autommo.Game.Tests
             changed.Should().Be.True();
         }
 
-        [Fact]
-        public void Attack_GivenATarget_AttacksTarget()
-        {
-            _test.Attack(_newTarget);
-
-            Mock.Get(_meleeAttacker).Verify(x => x.Attack(_newTarget));
-        }
-
-        private void AttackerStopsAttacking()
-        {
-            AttackerIsAttackingChangesTo(false);
-        }
-
         private void AttackerBeginsAttacking()
         {
             AttackerIsAttackingChangesTo(true);
@@ -90,6 +92,11 @@ namespace Autommo.Game.Tests
                                PropertyName = "IsAttacking",
                                Value = newValue
                            });
+        }
+
+        private void AttackerStopsAttacking()
+        {
+            AttackerIsAttackingChangesTo(false);
         }
 
         private void AttackerTargetChangesTo(IUnit newTarget)

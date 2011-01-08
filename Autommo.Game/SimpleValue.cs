@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Autommo.Game
+﻿namespace Autommo.Game
 {
+    using System;
+
     public abstract class SimpleValue<TValue>
     {
         private TValue _value;

@@ -1,21 +1,17 @@
-﻿using Autommo.Game.Interfaces;
-using ReactiveXaml;
-
-namespace Autommo.Game
+﻿namespace Autommo.Game
 {
-    public class MeleeAttacker : Model, IAutoAttacker
+    using Autommo.Game.Interfaces;
+
+    using ReactiveXaml;
+
+    public class MeleeAttacker : Model,
+                                 IAutoAttacker
     {
         private bool _IsAttacking;
+
         private Length _MaxRange;
+
         private IUnit _Target;
-
-        #region IAutoAttacker Members
-
-        public IUnit Target
-        {
-            get { return _Target; }
-            private set { this.RaiseAndSetIfChanged(x => x.Target, value); }
-        }
 
         public bool IsAttacking
         {
@@ -28,6 +24,14 @@ namespace Autommo.Game
             get { return _MaxRange; }
             private set { this.RaiseAndSetIfChanged(x => x.MaxRange, value); }
         }
+
+        public IUnit Target
+        {
+            get { return _Target; }
+            private set { this.RaiseAndSetIfChanged(x => x.Target, value); }
+        }
+
+        #region IAutoAttacker members
 
         public void Attack(IUnit target)
         {

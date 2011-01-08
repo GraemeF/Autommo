@@ -1,12 +1,15 @@
-﻿using ReactiveXaml;
-
-namespace Autommo.Game.Interfaces
+﻿namespace Autommo.Game.Interfaces
 {
+    using ReactiveXaml;
+
     public interface IAutoAttacker : IReactiveNotifyPropertyChanged
     {
-        IUnit Target { get; }
-        Length MaxRange { get; }
         bool IsAttacking { get; }
+
+        Length MaxRange { get; }
+
+        IUnit Target { get; }
+
         void Attack(IUnit target);
     }
 }

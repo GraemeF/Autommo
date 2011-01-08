@@ -2,7 +2,8 @@
 {
     public class Health : SimpleValue<int>
     {
-        public Health(int value) : base(value)
+        public Health(int value)
+            : base(value)
         {
         }
     }

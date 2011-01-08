@@ -1,8 +1,9 @@
-﻿using Autommo.Game.Interfaces;
-using ReactiveXaml;
-
-namespace Autommo.Game
+﻿namespace Autommo.Game
 {
+    using Autommo.Game.Interfaces;
+
+    using ReactiveXaml;
+
     public class World : IWorld
     {
         public World()
@@ -10,10 +11,6 @@ namespace Autommo.Game
             Units = new ReactiveCollection<IUnit>();
         }
 
-        #region IWorld Members
-
         public ReactiveCollection<IUnit> Units { get; private set; }
-
-        #endregion
     }
 }

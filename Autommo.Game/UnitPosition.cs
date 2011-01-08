@@ -9,6 +9,7 @@
         }
 
         public Cylinder Location { get; private set; }
+
         public decimal Orientation { get; private set; }
     }
 }

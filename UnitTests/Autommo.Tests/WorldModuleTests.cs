@@ -1,11 +1,14 @@
-﻿using System.Net;
-using Nancy;
-using Nancy.Routing;
-using Should.Fluent;
-using Xunit;
-
-namespace Autommo.Tests
+﻿namespace Autommo.Tests
 {
+    using System.Net;
+
+    using Nancy;
+    using Nancy.Routing;
+
+    using Should.Fluent;
+
+    using Xunit;
+
     public class WorldModuleTests
     {
         private readonly WorldModule _test = new WorldModule();

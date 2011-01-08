@@ -1,12 +1,16 @@
-﻿using System.Net;
-using Autommo.Dto;
-using Nancy;
-using Nancy.Routing;
-using Should.Fluent;
-using Xunit;
-
-namespace Autommo.Tests
+﻿namespace Autommo.Tests
 {
+    using System.Net;
+
+    using Autommo.Dto;
+
+    using Nancy;
+    using Nancy.Routing;
+
+    using Should.Fluent;
+
+    using Xunit;
+
     public class MobsModuleTests
     {
         private readonly MobsModule _test = new MobsModule();
@@ -24,7 +28,7 @@ namespace Autommo.Tests
         {
             IRoute route = _test.GetRouteForRequest(new Request("POST", "/mob"));
 
-            route.Invoke().GetDeserializedContents<Mob>().Should().Be.OfType(typeof (Mob));
+            route.Invoke().GetDeserializedContents<Mob>().Should().Be.OfType(typeof(Mob));
         }
     }
 }

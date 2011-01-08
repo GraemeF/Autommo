@@ -1,14 +1,19 @@
-﻿using System;
-using System.Linq;
-using Autommo.Game.Interfaces;
-using ReactiveXaml;
-
-namespace Autommo.Game
+﻿namespace Autommo.Game
 {
-    public class Player : Model, IPlayer
+    using System;
+    using System.Linq;
+
+    using Autommo.Game.Interfaces;
+
+    using ReactiveXaml;
+
+    public class Player : Model,
+                          IPlayer
     {
         private readonly CombatStatus _CombatStatus = CombatStatus.Idle;
+
         private readonly IAutoAttacker _meleeAttacker;
+
         private IUnit _Target;
 
         public Player(IAutoAttacker meleeAttacker)
@@ -35,15 +40,7 @@ namespace Autommo.Game
             private set { this.RaiseAndSetIfChanged(x => x.CombatStatus, value); }
         }
 
-        public IUnit Target
-        {
-            get { return _Target; }
-            private set { this.RaiseAndSetIfChanged(x => x.Target, value); }
-        }
-
-        #region IPlayer Members
-
-        public UnitPosition Position
+        public Health Health
         {
             get { throw new NotImplementedException(); }
         }
@@ -53,17 +50,21 @@ namespace Autommo.Game
             get { throw new NotImplementedException(); }
         }
 
+        public UnitPosition Position
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public IUnit Target
+        {
+            get { return _Target; }
+            private set { this.RaiseAndSetIfChanged(x => x.Target, value); }
+        }
+
         public Length VisibilityRange
         {
             get { throw new NotImplementedException(); }
         }
-
-        public Health Health
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        #endregion
 
         public void Attack(IUnit target)
         {

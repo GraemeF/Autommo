@@ -1,13 +1,20 @@
-﻿using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Composition.Primitives;
-using System.IO;
-using System.Reflection;
-using CommandLine;
-
-namespace Autommo.Console
+﻿namespace Autommo.Console
 {
+    using System;
+    using System.ComponentModel.Composition.Hosting;
+    using System.ComponentModel.Composition.Primitives;
+    using System.IO;
+    using System.Reflection;
+
+    using CommandLine;
+
     internal class Program
     {
+        private static IServer ComposeServer()
+        {
+            return new CompositionContainer(GetCatalog()).GetExportedValue<IServer>();
+        }
+
         private static ComposablePartCatalog GetCatalog()
         {
             DirectoryCatalog directoryCatalog = GetDirectoryCatalog();
@@ -28,7 +35,7 @@ namespace Autommo.Console
                 return;
 
             using (StartServer(options))
-                System.Console.ReadLine();
+                Console.ReadLine();
         }
 
         private static IServer StartServer(Options options)
@@ -39,11 +46,6 @@ namespace Autommo.Console
             server.Start();
 
             return server;
-        }
-
-        private static IServer ComposeServer()
-        {
-            return new CompositionContainer(GetCatalog()).GetExportedValue<IServer>();
         }
     }
 }

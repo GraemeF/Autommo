@@ -1,12 +1,15 @@
-﻿using System.ComponentModel;
-
-namespace Autommo.Game.Interfaces
+﻿namespace Autommo.Game.Interfaces
 {
+    using System.ComponentModel;
+
     public interface IUnit : INotifyPropertyChanged
     {
-        UnitPosition Position { get; }
-        Length MeleeRange { get; }
-        Length VisibilityRange { get; }
         Health Health { get; }
+
+        Length MeleeRange { get; }
+
+        UnitPosition Position { get; }
+
+        Length VisibilityRange { get; }
     }
 }

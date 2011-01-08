@@ -2,7 +2,8 @@
 {
     public class Length : SimpleValue<decimal>
     {
-        public Length(decimal value) : base(value)
+        public Length(decimal value)
+            : base(value)
         {
         }
     }

@@ -1,22 +1,16 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using JsonFx.Json;
-using Nancy;
-using Nancy.Routing;
-
-namespace Autommo.Tests
+﻿namespace Autommo.Tests
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+
+    using JsonFx.Json;
+
+    using Nancy;
+    using Nancy.Routing;
+
     public static class NancyExtensions
     {
-        public static IRoute GetRouteForRequest(this NancyModule module, Request request)
-        {
-            var modules = new[] {module};
-            IEnumerable<RouteDescription> descriptions = modules.SelectMany(x => Nancy.Extensions.NancyExtensions.GetRouteDescription(x, request));
-
-            return new RouteResolver().GetRoute(request, descriptions);
-        }
-
         public static TContents GetDeserializedContents<TContents>(this Response response)
         {
             var memory = new MemoryStream();
@@ -25,6 +19,15 @@ namespace Autommo.Tests
 
             using (var reader = new StreamReader(memory))
                 return new JsonReader().Read<TContents>(reader);
+        }
+
+        public static IRoute GetRouteForRequest(this NancyModule module, Request request)
+        {
+            var modules = new[] { module };
+            IEnumerable<RouteDescription> descriptions =
+                modules.SelectMany(x => Nancy.Extensions.NancyExtensions.GetRouteDescription(x, request));
+
+            return new RouteResolver().GetRoute(request, descriptions);
         }
     }
 }

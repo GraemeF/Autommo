@@ -10,7 +10,9 @@
         }
 
         public Length X { get; private set; }
+
         public Length Y { get; private set; }
+
         public Length Z { get; private set; }
     }
 }

@@ -9,6 +9,7 @@
         }
 
         public Point BaseCentre { get; private set; }
+
         public Length Height { get; private set; }
     }
 }
