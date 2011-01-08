@@ -58,6 +58,12 @@
     <Compile Include="Steps\CombatSteps.cs" />
     <Compile Include="Steps\MobSteps.cs" />
     <Compile Include="Steps\MovementSteps.cs" />
+    <Compile Include="Steps\SurveySteps.cs" />
+    <Compile Include="Survey.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Survey.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -66,6 +72,10 @@
       <LastGenOutput>Combat.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Survey.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Survey.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Autommo.Dto\Autommo.Dto.csproj">

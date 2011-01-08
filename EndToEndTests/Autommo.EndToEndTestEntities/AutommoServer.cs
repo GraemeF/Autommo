@@ -85,5 +85,13 @@ namespace Autommo.EndToEndTestEntities
 
             return client.Response.StaticBody<Mob>();
         }
+
+        public Neighbourhood GetNeighbourhood()
+        {
+            var client = new HttpClient();
+            client.Get(new Uri(BaseUri, "/neighbourhood").AbsoluteUri);
+
+            return client.Response.StaticBody<Neighbourhood>();
+        }
     }
 }
