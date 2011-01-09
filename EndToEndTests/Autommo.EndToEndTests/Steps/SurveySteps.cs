@@ -9,8 +9,8 @@
     [Binding]
     public class SurveySteps : ServerSteps
     {
-        [Then(@"the response should include a nearby mob")]
-        public void ThenTheResponseShouldIncludeANearbyMob()
+        [Then(@"there should be a mob in the neighbourhood")]
+        public void ThereShouldBeAMobInTheNeighbourhood()
         {
             ScenarioContext.Current.Get<Neighbourhood>("Neighbourhood").
                 Mobs.Should().Count.AtLeast(1);

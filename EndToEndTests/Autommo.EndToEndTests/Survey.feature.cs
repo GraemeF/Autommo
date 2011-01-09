@@ -59,16 +59,16 @@ namespace Autommo.EndToEndTests
         
         [Xunit.FactAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "Survey")]
-        [Xunit.TraitAttribute("Description", "Get list of nearby mobs")]
-        public virtual void GetListOfNearbyMobs()
+        [Xunit.TraitAttribute("Description", "See if there are any mobs in the neighbourhood")]
+        public virtual void SeeIfThereAreAnyMobsInTheNeighbourhood()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get list of nearby mobs", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("See if there are any mobs in the neighbourhood", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.When("I ask what is near my character");
 #line 8
- testRunner.Then("the response should include a nearby mob");
+ testRunner.Then("there should be a mob in the neighbourhood");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

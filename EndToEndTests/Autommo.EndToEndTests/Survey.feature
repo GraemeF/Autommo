@@ -3,6 +3,6 @@
 	As a player
 	I want to see what is around my character
 
-Scenario: Get list of nearby mobs
+Scenario: See if there are any mobs in the neighbourhood
 	When I ask what is near my character
-	Then the response should include a nearby mob
+	Then there should be a mob in the neighbourhood
