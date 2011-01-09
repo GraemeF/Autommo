@@ -20,7 +20,7 @@
                     return
                         new JsonResponse<Neighbourhood>(new Neighbourhood
                                                             {
-                                                                Mobs = new List<object>
+                                                                Mobs = new Mob[]
                                                                            {
                                                                                new Mob()
                                                                            }

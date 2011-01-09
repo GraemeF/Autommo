@@ -4,6 +4,6 @@
 
     public class Neighbourhood
     {
-        public List<object> Mobs { get; set; }
+        public Mob[] Mobs { get; set; }
     }
 }
