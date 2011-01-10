@@ -93,5 +93,10 @@ namespace Autommo.EndToEndTestEntities
 
             return client.Response.StaticBody<Neighbourhood>();
         }
+
+        public void Move(WorldPoint worldPoint)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
