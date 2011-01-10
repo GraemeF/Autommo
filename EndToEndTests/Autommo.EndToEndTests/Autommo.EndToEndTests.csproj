@@ -53,6 +53,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Combat.feature</DependentUpon>
     </Compile>
+    <Compile Include="Movement.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Movement.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\ServerSteps.cs" />
     <Compile Include="Steps\CombatSteps.cs" />
@@ -70,6 +75,10 @@
     <None Include="Combat.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Combat.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Movement.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Movement.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Survey.feature">
