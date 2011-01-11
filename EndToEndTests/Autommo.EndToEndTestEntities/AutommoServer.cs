@@ -111,7 +111,10 @@
 
         public Character GetCharacter()
         {
-            throw new NotImplementedException();
+            var client = new HttpClient();
+            client.Get(CreateUri("/character/test"));
+
+            return client.Response.StaticBody<Character>();
         }
     }
 }
