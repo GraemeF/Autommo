@@ -6,7 +6,7 @@
 	url = git@github.com:GraemeF/Nancy.git
 [submodule "packages-submodules/Gallio"]
 	path = packages-submodules/Gallio
-	url = git://github.com/GraemeF/GallioBin.git
+	url = git@github.com:GraemeF/GallioBin.git
 [submodule "packages-submodules/ReactiveXaml"]
 	path = packages-submodules/ReactiveXaml
 	url = https://github.com/xpaulbettsx/ReactiveXaml.git
