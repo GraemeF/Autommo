@@ -38,6 +38,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharactersModule.cs" />
     <Compile Include="MobsModule.cs" />
     <Compile Include="NeighbourhoodModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

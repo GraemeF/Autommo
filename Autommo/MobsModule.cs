@@ -14,13 +14,6 @@
         [ImportingConstructor]
         public MobsModule()
         {
-            Get["/status"] = parameters =>
-                {
-                    return new Response
-                               {
-                                   StatusCode = HttpStatusCode.OK
-                               };
-                };
             Post["/mob"] = parameters =>
                 {
                     return

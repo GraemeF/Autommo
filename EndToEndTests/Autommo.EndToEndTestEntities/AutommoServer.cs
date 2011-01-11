@@ -1,22 +1,28 @@
-﻿using System;
-using System.Diagnostics;
-using System.Net;
-using System.Threading;
-using Autommo.Dto;
-using EasyHttp.Http;
-
-namespace Autommo.EndToEndTestEntities
+﻿namespace Autommo.EndToEndTestEntities
 {
+    using System;
+    using System.Diagnostics;
+    using System.Net;
+    using System.Threading;
+
+    using Autommo.Dto;
+
+    using EasyHttp.Http;
+
     public class AutommoServer : IDisposable
     {
         private readonly Process _process;
+
 #if DEBUG
         private const string Configuration = "Debug";
 #else
         private const string Configuration = "Release";
 #endif
+
         private const string ServerFolder = @"..\..\..\..\Autommo.Console\bin\" + Configuration;
+
         private const string ServerPath = ServerFolder + @"\Autommo.Console.exe";
+
         private static readonly Uri BaseUri = new Uri("http://127.0.0.1:8099");
 
         #region IDisposable Members
@@ -44,7 +50,6 @@ namespace Autommo.EndToEndTestEntities
         private void WaitForServerToStartResponding()
         {
             for (int remainingTries = 50; remainingTries >= 0; remainingTries--)
-            {
                 try
                 {
                     PingServer();
@@ -57,7 +62,6 @@ namespace Autommo.EndToEndTestEntities
 
                     Thread.Sleep(100);
                 }
-            }
         }
 
         private void PingServer()
@@ -81,22 +85,28 @@ namespace Autommo.EndToEndTestEntities
         public Mob AddMob()
         {
             var client = new HttpClient();
-            client.Post(new Uri(BaseUri, "/mob").AbsoluteUri, new Mob(), Schema.ContentType);
+            client.Post(CreateUri("/mob"), new Mob(), Schema.ContentType);
 
             return client.Response.StaticBody<Mob>();
+        }
+
+        private string CreateUri(string path)
+        {
+            return new Uri(BaseUri, path).AbsoluteUri;
         }
 
         public Neighbourhood GetNeighbourhood()
         {
             var client = new HttpClient();
-            client.Get(new Uri(BaseUri, "/neighbourhood").AbsoluteUri);
+            client.Get(CreateUri("/neighbourhood"));
 
             return client.Response.StaticBody<Neighbourhood>();
         }
 
         public void Move(WorldPoint worldPoint)
         {
-            throw new NotImplementedException();
+            var client = new HttpClient();
+            client.Post(CreateUri("/character/test/route"), worldPoint, Schema.ContentType);
         }
     }
 }

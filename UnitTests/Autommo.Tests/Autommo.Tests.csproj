@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharactersModuleTests.cs" />
     <Compile Include="JsonFxTests.cs" />
     <Compile Include="MobsModuleTests.cs" />
     <Compile Include="NancyExtensions.cs" />
