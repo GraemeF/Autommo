@@ -109,7 +109,7 @@
             client.Post(CreateUri("/character/test/route"), worldPoint, Schema.ContentType);
         }
 
-        public Player GetPlayer()
+        public Character GetCharacter()
         {
             throw new NotImplementedException();
         }

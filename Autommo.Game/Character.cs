@@ -7,8 +7,8 @@
 
     using ReactiveXaml;
 
-    public class Player : Model,
-                          IPlayer
+    public class Character : Model,
+                          ICharacter
     {
         private readonly CombatStatus _CombatStatus = CombatStatus.Idle;
 
@@ -16,7 +16,7 @@
 
         private IUnit _Target;
 
-        public Player(IAutoAttacker meleeAttacker)
+        public Character(IAutoAttacker meleeAttacker)
         {
             _meleeAttacker = meleeAttacker;
 

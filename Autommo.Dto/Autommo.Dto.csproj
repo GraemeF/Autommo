@@ -44,7 +44,7 @@
     <Compile Include="Schema.cs" />
     <Compile Include="WorldPoint.cs" />
     <Compile Include="Mob.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Character.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorldLocation.cs" />
   </ItemGroup>

@@ -13,7 +13,7 @@
 
     using Xunit;
 
-    public class PlayerTests
+    public class CharacterTests
     {
         private readonly IAutoAttacker _meleeAttacker;
 
@@ -24,14 +24,14 @@
 
         private readonly IUnit _originalTarget = Mock.Of<IUnit>();
 
-        private readonly Player _test;
+        private readonly Character _test;
 
-        public PlayerTests()
+        public CharacterTests()
         {
             _meleeAttacker = Mocks.Of<IAutoAttacker>().
                 First(autoAttacker => autoAttacker.Changed == _meleeAttackerPropertyChanged &&
                                       autoAttacker.Target == _originalTarget);
-            _test = new Player(_meleeAttacker);
+            _test = new Character(_meleeAttacker);
         }
 
         [Fact]
@@ -69,7 +69,7 @@
         {
             bool changed = false;
             _test.ObservableForProperty(x => x.Target).
-                Subscribe(Observer.Create<IObservedChange<Player, IUnit>>(x => changed = true));
+                Subscribe(Observer.Create<IObservedChange<Character, IUnit>>(x => changed = true));
 
             AttackerTargetChangesTo(_newTarget);
             changed.Should().Be.True();

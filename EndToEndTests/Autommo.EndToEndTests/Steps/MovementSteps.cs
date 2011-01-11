@@ -23,7 +23,7 @@ namespace Autommo.EndToEndTests.Steps
         [Then(@"I should be positioned at (\d+),(\d+),(\d+)")]
         public void ThenIShouldBePositionedAt(decimal x, decimal y, decimal z)
         {
-            Server.GetPlayer().Location.Position.Should().Equal(new WorldPoint() {X = x, Y = y, Z = z});
+            Server.GetCharacter().Location.Position.Should().Equal(new WorldPoint() {X = x, Y = y, Z = z});
         }
 
         [When(@"I move to (\d+),(\d+),(\d+)")]

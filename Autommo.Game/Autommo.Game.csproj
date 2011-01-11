@@ -57,13 +57,13 @@
     <Compile Include="Cylinder.cs" />
     <Compile Include="Health.cs" />
     <Compile Include="Interfaces\IAutoAttacker.cs" />
-    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\IUnit.cs" />
     <Compile Include="Interfaces\IWorld.cs" />
     <Compile Include="Length.cs" />
     <Compile Include="MeleeAttacker.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Character.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="SimpleValue.cs" />
     <Compile Include="UnitPosition.cs" />

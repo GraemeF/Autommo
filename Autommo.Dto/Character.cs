@@ -1,6 +1,6 @@
 ﻿namespace Autommo.Dto
 {
-    public class Player
+    public class Character
     {
         public WorldLocation Location { get; set; }
 
