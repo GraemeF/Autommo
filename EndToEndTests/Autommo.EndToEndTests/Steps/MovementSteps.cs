@@ -1,10 +1,13 @@
-﻿using TechTalk.SpecFlow;
+﻿using System;
+using System.Threading;
 using Autommo.Dto;
+using Should.Fluent;
+using TechTalk.SpecFlow;
 
 namespace Autommo.EndToEndTests.Steps
 {
     [Binding]
-    public class MovementSteps:ServerSteps
+    public class MovementSteps : ServerSteps
     {
         [When(@"I move my character next to the mob")]
         public void WhenIMoveMyCharacterNextToTheMob()
@@ -15,26 +18,29 @@ namespace Autommo.EndToEndTests.Steps
         [Given(@"I am positioned at (\d+),(\d+),(\d+)")]
         public void GivenIAmPositionedAt(decimal x, decimal y, decimal z)
         {
-            Server.Move(new WorldPoint{
-                X=x,Y= y,Z= z});
         }
 
-        [Then(@"I should be positioned at 10,0,0")]
-        public void ThenIShouldBePositionedAt1000()
+        [Then(@"I should be positioned at (\d+),(\d+),(\d+)")]
+        public void ThenIShouldBePositionedAt(decimal x, decimal y, decimal z)
         {
-            ScenarioContext.Current.Pending();
+            Server.GetPlayer().Location.Position.Should().Equal(new WorldPoint() {X = x, Y = y, Z = z});
         }
 
-        [When(@"I move to 10,0,0")]
-        public void WhenIMoveTo1000()
+        [When(@"I move to (\d+),(\d+),(\d+)")]
+        public void WhenIMoveTo(decimal x, decimal y, decimal z)
         {
-            ScenarioContext.Current.Pending();
+            Server.Move(new WorldPoint
+            {
+                X = x,
+                Y = y,
+                Z = z
+            });
         }
 
-        [When(@"I wait for 2 seconds")]
-        public void WhenIWaitFor2Seconds()
+        [When(@"I wait for (\d+) seconds")]
+        public void WhenIWaitForSeconds(double seconds)
         {
-            ScenarioContext.Current.Pending();
+            Thread.Sleep(TimeSpan.FromSeconds(seconds));
         }
     }
 }

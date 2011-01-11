@@ -66,7 +66,7 @@
 
         private void PingServer()
         {
-            new HttpClient().Get(new Uri(BaseUri, "status").AbsoluteUri);
+            new HttpClient().Get(new Uri(BaseUri, "/status").AbsoluteUri);
         }
 
         private void Dispose(bool disposing)
@@ -107,6 +107,11 @@
         {
             var client = new HttpClient();
             client.Post(CreateUri("/character/test/route"), worldPoint, Schema.ContentType);
+        }
+
+        public Player GetPlayer()
+        {
+            throw new NotImplementedException();
         }
     }
 }
