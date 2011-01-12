@@ -1,11 +1,17 @@
 ﻿namespace Autommo.Tests
 {
+    using System.Linq;
     using System.Net;
 
     using Autommo.Dto;
+    using Autommo.Game.Interfaces;
+
+    using Moq;
 
     using Nancy;
     using Nancy.Routing;
+
+    using ReactiveXaml;
 
     using Should.Fluent;
 
@@ -13,7 +19,22 @@
 
     public class CharactersModuleTests
     {
-        private readonly CharactersModule _test = new CharactersModule();
+        private readonly CharactersModule _test;
+
+        private readonly IWorld _world;
+
+        public CharactersModuleTests()
+        {
+            var characters = new ReactiveCollection<ICharacter>
+                                 {
+                                     Mock.Of<ICharacter>()
+                                 };
+
+            _world = Mocks.Of<IWorld>().
+                First(x => x.Characters == characters);
+
+            _test = new CharactersModule(_world);
+        }
 
         [Fact]
         public void GetCharacter_WhenGivenAKnownCharacterInUri_GivesOKResponse()

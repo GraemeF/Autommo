@@ -4,6 +4,7 @@
     using System.Net;
 
     using Autommo.Dto;
+    using Autommo.Game.Interfaces;
 
     using Nancy;
     using Nancy.Formatters.Responses;
@@ -12,7 +13,7 @@
     public class CharactersModule : NancyModule
     {
         [ImportingConstructor]
-        public CharactersModule()
+        public CharactersModule(IWorld world)
         {
             Get["/character/test"] = parameters =>
                 {

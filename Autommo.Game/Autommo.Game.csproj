@@ -56,6 +56,7 @@
     <Compile Include="CombatStatus.cs" />
     <Compile Include="Cylinder.cs" />
     <Compile Include="Health.cs" />
+    <Compile Include="Interfaces\CharacterId.cs" />
     <Compile Include="Interfaces\IAutoAttacker.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\IUnit.cs" />

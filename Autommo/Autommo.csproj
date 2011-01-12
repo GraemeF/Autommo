@@ -49,6 +49,10 @@
       <Project>{74EE7C59-2C32-4CA8-BD58-907EA3057114}</Project>
       <Name>Autommo.Dto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Autommo.Game\Autommo.Game.csproj">
+      <Project>{8E7298C6-8BC3-48A1-B2E9-03B3F6121095}</Project>
+      <Name>Autommo.Game</Name>
+    </ProjectReference>
     <ProjectReference Include="..\packages-submodules\Nancy\src\Nancy.Formatters\Nancy.Formatters.csproj">
       <Project>{25643482-07E3-4981-9FBD-210CDF108AA8}</Project>
       <Name>Nancy.Formatters</Name>

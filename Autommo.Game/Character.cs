@@ -8,7 +8,7 @@
     using ReactiveXaml;
 
     public class Character : Model,
-                          ICharacter
+                             ICharacter
     {
         private readonly CombatStatus _CombatStatus = CombatStatus.Idle;
 
@@ -16,7 +16,7 @@
 
         private IUnit _Target;
 
-        public Character(IAutoAttacker meleeAttacker)
+        public Character(CharacterId id, IAutoAttacker meleeAttacker)
         {
             _meleeAttacker = meleeAttacker;
 
@@ -44,6 +44,8 @@
         {
             get { throw new NotImplementedException(); }
         }
+
+        public CharacterId Id { get; private set; }
 
         public Length MeleeRange
         {

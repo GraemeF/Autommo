@@ -31,7 +31,8 @@
             _meleeAttacker = Mocks.Of<IAutoAttacker>().
                 First(autoAttacker => autoAttacker.Changed == _meleeAttackerPropertyChanged &&
                                       autoAttacker.Target == _originalTarget);
-            _test = new Character(_meleeAttacker);
+
+            _test = new Character(new CharacterId("test"), _meleeAttacker);
         }
 
         [Fact]

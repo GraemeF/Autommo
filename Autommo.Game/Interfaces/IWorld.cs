@@ -5,5 +5,7 @@
     public interface IWorld
     {
         ReactiveCollection<IUnit> Units { get; }
+
+        ReactiveCollection<ICharacter> Characters { get; }
     }
 }

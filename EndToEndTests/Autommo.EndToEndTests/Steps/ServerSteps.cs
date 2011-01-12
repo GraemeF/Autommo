@@ -24,7 +24,7 @@ namespace Autommo.EndToEndTests.Steps
                 ScenarioContext.Current.Get<AutommoServer>("Server").Dispose();
         }
 
-        protected static void Launch()
+        private static void Launch()
         {
             ScenarioContext.Current.Add("Server", new AutommoServer());
         }
