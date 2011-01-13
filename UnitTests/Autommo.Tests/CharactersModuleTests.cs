@@ -27,7 +27,8 @@
         {
             var characters = new ReactiveCollection<ICharacter>
                                  {
-                                     Mock.Of<ICharacter>()
+                                     Mocks.Of<ICharacter>().
+                                         First(x => x.Id == new CharacterId("test"))
                                  };
 
             _world = Mocks.Of<IWorld>().

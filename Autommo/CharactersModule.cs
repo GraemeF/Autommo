@@ -1,6 +1,7 @@
 ﻿namespace Autommo
 {
     using System.ComponentModel.Composition;
+    using System.Linq;
     using System.Net;
 
     using Autommo.Dto;
@@ -12,24 +13,13 @@
     [Export(typeof(NancyModule))]
     public class CharactersModule : NancyModule
     {
+        private readonly IWorld _world;
+
         [ImportingConstructor]
         public CharactersModule(IWorld world)
         {
-            Get["/character/test"] = parameters =>
-                {
-                    return
-                        new JsonResponse<Character>(new Character
-                                                        {
-                                                            Location = new WorldLocation
-                                                                           {
-                                                                               Position = new WorldPoint()
-                                                                           }
-                                                        })
-                            {
-                                StatusCode = HttpStatusCode.OK,
-                                ContentType = Schema.ContentType
-                            };
-                };
+            _world = world;
+            Get["/character/{id}"] = parameters => GetCharacter(new CharacterId((string)parameters.id));
             Post["/character/test/route"] = parameters =>
                 {
                     return
@@ -38,6 +28,28 @@
                                 StatusCode = HttpStatusCode.Created
                             };
                 };
+        }
+
+        private Response GetCharacter(CharacterId id)
+        {
+            ICharacter character = _world.Characters.FirstOrDefault(x => x.Id == id);
+            if (character == null)
+                return new Response
+                           {
+                               StatusCode = HttpStatusCode.NotFound
+                           };
+            return
+                new JsonResponse<Character>(new Character
+                                                {
+                                                    Location = new WorldLocation
+                                                                   {
+                                                                       Position = character.Position.Location.BaseCentre
+                                                                   }
+                                                })
+                    {
+                        StatusCode = HttpStatusCode.OK,
+                        ContentType = Schema.ContentType
+                    };
         }
     }
 }

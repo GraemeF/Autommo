@@ -72,6 +72,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Autommo.Dto\Autommo.Dto.csproj">
+      <Project>{74EE7C59-2C32-4CA8-BD58-907EA3057114}</Project>
+      <Name>Autommo.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\packages-submodules\ReactiveXaml\ReactiveXaml\ReactiveXaml.csproj">
       <Project>{292A477B-BB94-43C1-984E-E177EF9FEDB7}</Project>
       <Name>ReactiveXaml</Name>
