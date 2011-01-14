@@ -19,17 +19,27 @@
 
     public class CharactersModuleTests
     {
+        private readonly WorldPoint _characterLocation;
+
         private readonly CharactersModule _test;
 
         private readonly IWorld _world;
 
         public CharactersModuleTests()
         {
-            var characters = new ReactiveCollection<ICharacter>
-                                 {
-                                     Mocks.Of<ICharacter>().
-                                         First(x => x.Id == new CharacterId("test"))
-                                 };
+            _characterLocation = new WorldPoint
+                                     {
+                                         X = 1M,
+                                         Y = 2M,
+                                         Z = 3M
+                                     };
+            var characters =
+                new ReactiveCollection<ICharacter>
+                    {
+                        Mocks.Of<ICharacter>().
+                            First(x => x.Id == new CharacterId("test") &&
+                                       x.Position.Location.BaseCentre == _characterLocation)
+                    };
 
             _world = Mocks.Of<IWorld>().
                 First(x => x.Characters == characters);
