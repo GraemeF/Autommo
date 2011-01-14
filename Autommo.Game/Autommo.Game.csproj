@@ -53,19 +53,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterId.cs" />
     <Compile Include="CombatStatus.cs" />
-    <Compile Include="Cylinder.cs" />
-    <Compile Include="Health.cs" />
-    <Compile Include="Interfaces\CharacterId.cs" />
     <Compile Include="Interfaces\IAutoAttacker.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\IUnit.cs" />
     <Compile Include="Interfaces\IWorld.cs" />
-    <Compile Include="Length.cs" />
     <Compile Include="MeleeAttacker.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Character.cs" />
-    <Compile Include="Point.cs" />
     <Compile Include="SimpleValue.cs" />
     <Compile Include="UnitPosition.cs" />
     <Compile Include="World.cs" />

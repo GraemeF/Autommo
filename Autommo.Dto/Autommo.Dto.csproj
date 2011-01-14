@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Neighbourhood.cs" />
     <Compile Include="Schema.cs" />
-    <Compile Include="WorldPoint.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Mob.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

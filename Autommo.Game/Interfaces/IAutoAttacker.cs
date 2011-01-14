@@ -6,7 +6,7 @@
     {
         bool IsAttacking { get; }
 
-        Length MaxRange { get; }
+        decimal MaxRange { get; }
 
         IUnit Target { get; }
 

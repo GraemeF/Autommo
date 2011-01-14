@@ -9,7 +9,7 @@
     {
         private bool _IsAttacking;
 
-        private Length _MaxRange;
+        private decimal _MaxRange;
 
         private IUnit _Target;
 
@@ -19,7 +19,7 @@
             private set { this.RaiseAndSetIfChanged(x => x.IsAttacking, value); }
         }
 
-        public Length MaxRange
+        public decimal MaxRange
         {
             get { return _MaxRange; }
             private set { this.RaiseAndSetIfChanged(x => x.MaxRange, value); }

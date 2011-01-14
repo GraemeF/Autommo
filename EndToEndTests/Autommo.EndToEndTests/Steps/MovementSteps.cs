@@ -20,7 +20,7 @@
         [Then(@"I should be positioned at (\d+),(\d+),(\d+)")]
         public void ThenIShouldBePositionedAt(decimal x, decimal y, decimal z)
         {
-            Server.GetCharacter().Location.Position.Should().Equal(new WorldPoint
+            Server.GetCharacter().Position.Location.BaseCentre.Should().Equal(new Point
                                                                        {
                                                                            X = x,
                                                                            Y = y,
@@ -37,7 +37,7 @@
         [When(@"I move to (\d+),(\d+),(\d+)")]
         public void WhenIMoveTo(decimal x, decimal y, decimal z)
         {
-            Server.Move(new WorldPoint
+            Server.Move(new Point
                             {
                                 X = x,
                                 Y = y,

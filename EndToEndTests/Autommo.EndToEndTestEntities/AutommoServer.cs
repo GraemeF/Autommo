@@ -103,10 +103,10 @@
             return client.Response.StaticBody<Neighbourhood>();
         }
 
-        public void Move(WorldPoint worldPoint)
+        public void Move(Point point)
         {
             var client = new HttpClient();
-            client.Post(CreateUri("/character/test/route"), worldPoint, Schema.ContentType);
+            client.Post(CreateUri("/character/test/route"), point, Schema.ContentType);
         }
 
         public Character GetCharacter()

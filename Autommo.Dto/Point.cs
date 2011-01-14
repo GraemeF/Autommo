@@ -1,6 +1,6 @@
 ﻿namespace Autommo.Dto
 {
-    public class WorldPoint
+    public class Point
     {
         public decimal X { get; set; }
 
@@ -14,7 +14,7 @@
                 GetType() != obj.GetType())
                 return false;
 
-            var other = (WorldPoint)obj;
+            var other = (Point)obj;
             return other.X == X && other.Y == Y && other.Z == Z;
         }
 

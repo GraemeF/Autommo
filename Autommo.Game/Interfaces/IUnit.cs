@@ -2,14 +2,16 @@
 {
     using System.ComponentModel;
 
+    using Autommo.Dto;
+
     public interface IUnit : INotifyPropertyChanged
     {
-        Health Health { get; }
+        int Health { get; }
 
-        Length MeleeRange { get; }
+        decimal MeleeRange { get; }
 
         UnitPosition Position { get; }
 
-        Length VisibilityRange { get; }
+        decimal VisibilityRange { get; }
     }
 }

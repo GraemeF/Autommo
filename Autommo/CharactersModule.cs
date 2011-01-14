@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Net;
 
+    using AutoMapper;
+
     using Autommo.Dto;
     using Autommo.Game.Interfaces;
 
@@ -18,6 +20,8 @@
         [ImportingConstructor]
         public CharactersModule(IWorld world)
         {
+            Mapper.CreateMap<ICharacter, Character>();
+
             _world = world;
             Get["/character/{id}"] = parameters => GetCharacter(new CharacterId((string)parameters.id));
             Post["/character/test/route"] = parameters =>
@@ -39,13 +43,7 @@
                                StatusCode = HttpStatusCode.NotFound
                            };
             return
-                new JsonResponse<Character>(new Character
-                                                {
-                                                    Location = new WorldLocation
-                                                                   {
-                                                                       Position = character.Position.Location.BaseCentre
-                                                                   }
-                                                })
+                new JsonResponse<Character>(Mapper.Map<ICharacter, Character>(character))
                     {
                         StatusCode = HttpStatusCode.OK,
                         ContentType = Schema.ContentType

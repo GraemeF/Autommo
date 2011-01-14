@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
 
+    using Autommo.Dto;
     using Autommo.Game.Interfaces;
 
     using ReactiveXaml;
@@ -40,14 +41,14 @@
             private set { this.RaiseAndSetIfChanged(x => x.CombatStatus, value); }
         }
 
-        public Health Health
+        public int Health
         {
             get { throw new NotImplementedException(); }
         }
 
         public CharacterId Id { get; private set; }
 
-        public Length MeleeRange
+        public decimal MeleeRange
         {
             get { throw new NotImplementedException(); }
         }
@@ -63,7 +64,7 @@
             private set { this.RaiseAndSetIfChanged(x => x.Target, value); }
         }
 
-        public Length VisibilityRange
+        public decimal VisibilityRange
         {
             get { throw new NotImplementedException(); }
         }

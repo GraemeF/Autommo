@@ -4,6 +4,7 @@
     using System.Net;
 
     using Autommo.Dto;
+    using Autommo.Game;
     using Autommo.Game.Interfaces;
 
     using Moq;
@@ -17,9 +18,11 @@
 
     using Xunit;
 
+    using Character = Autommo.Dto.Character;
+
     public class CharactersModuleTests
     {
-        private readonly WorldPoint _characterLocation;
+        private readonly Point _characterLocation;
 
         private readonly CharactersModule _test;
 
@@ -27,7 +30,7 @@
 
         public CharactersModuleTests()
         {
-            _characterLocation = new WorldPoint
+            _characterLocation = new Point
                                      {
                                          X = 1M,
                                          Y = 2M,
@@ -38,7 +41,10 @@
                     {
                         Mocks.Of<ICharacter>().
                             First(x => x.Id == new CharacterId("test") &&
-                                       x.Position.Location.BaseCentre == _characterLocation)
+                                       x.Position ==
+                                       new UnitPosition(new Cylinder(_characterLocation,
+                                                                     1M),
+                                                        0M))
                     };
 
             _world = Mocks.Of<IWorld>().
@@ -60,7 +66,7 @@
         {
             IRoute route = _test.GetRouteForRequest(new Request("GET", "/character/test"));
 
-            route.Invoke().GetDeserializedContents<Character>().Should().Not.Be.Null();
+            route.Invoke().GetDeserializedContents<Character>().Position.Location.BaseCentre.Should().Equal(_characterLocation);
         }
 
         [Fact]

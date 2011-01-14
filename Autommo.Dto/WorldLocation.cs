@@ -2,6 +2,6 @@
 {
     public class WorldLocation
     {
-        public WorldPoint Position { get; set; }
+        public Point Position { get; set; }
     }
 }
