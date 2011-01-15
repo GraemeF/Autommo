@@ -1,8 +1,12 @@
 ﻿namespace Autommo.Game.Tests
 {
+    #region Using Directives
+
     using Should.Fluent;
 
     using Xunit;
+
+    #endregion
 
     public class WorldTests
     {

@@ -1,5 +1,7 @@
 ﻿namespace Autommo.Game.Tests
 {
+    #region Using Directives
+
     using System.Collections.Generic;
     using System.Linq;
 
@@ -12,6 +14,8 @@
     using Should.Fluent;
 
     using Xunit;
+
+    #endregion
 
     public class CharacterTests
     {
@@ -90,7 +94,7 @@
             _meleeAttackerPropertyChanged.
                 OnNext(new ObservedChange<object, object>
                            {
-                               PropertyName = "IsAttacking",
+                               PropertyName = "IsAttacking", 
                                Value = newValue
                            });
         }
@@ -109,7 +113,7 @@
             _meleeAttackerPropertyChanged.
                 OnNext(new ObservedChange<object, object>
                            {
-                               PropertyName = "Target",
+                               PropertyName = "Target", 
                                Value = newTarget
                            });
         }

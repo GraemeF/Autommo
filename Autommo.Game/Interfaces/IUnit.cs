@@ -1,8 +1,12 @@
 ﻿namespace Autommo.Game.Interfaces
 {
+    #region Using Directives
+
     using System.ComponentModel;
 
     using Autommo.Dto;
+
+    #endregion
 
     public interface IUnit : INotifyPropertyChanged
     {

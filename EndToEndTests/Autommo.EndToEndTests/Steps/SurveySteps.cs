@@ -1,10 +1,14 @@
 ﻿namespace Autommo.EndToEndTests.Steps
 {
+    #region Using Directives
+
     using Autommo.Dto;
 
     using Should.Fluent;
 
     using TechTalk.SpecFlow;
+
+    #endregion
 
     [Binding]
     public class SurveySteps : ServerSteps

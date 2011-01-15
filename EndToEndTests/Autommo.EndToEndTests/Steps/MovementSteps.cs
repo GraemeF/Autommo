@@ -1,5 +1,7 @@
 ﻿namespace Autommo.EndToEndTests.Steps
 {
+    #region Using Directives
+
     using System;
     using System.Threading;
 
@@ -8,6 +10,8 @@
     using Should.Fluent;
 
     using TechTalk.SpecFlow;
+
+    #endregion
 
     [Binding]
     public class MovementSteps : ServerSteps
@@ -20,12 +24,13 @@
         [Then(@"I should be positioned at (\d+),(\d+),(\d+)")]
         public void ThenIShouldBePositionedAt(decimal x, decimal y, decimal z)
         {
-            Server.GetCharacter().Position.Location.BaseCentre.Should().Equal(new Point
-                                                                       {
-                                                                           X = x,
-                                                                           Y = y,
-                                                                           Z = z
-                                                                       });
+            Server.GetCharacter().Position.Location.BaseCentre.
+                Should().Equal(new Point
+                                   {
+                                       X = x, 
+                                       Y = y, 
+                                       Z = z
+                                   });
         }
 
         [When(@"I move my character next to the mob")]
@@ -39,8 +44,8 @@
         {
             Server.Move(new Point
                             {
-                                X = x,
-                                Y = y,
+                                X = x, 
+                                Y = y, 
                                 Z = z
                             });
         }

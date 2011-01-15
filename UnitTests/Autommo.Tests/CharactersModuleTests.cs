@@ -1,10 +1,11 @@
 ﻿namespace Autommo.Tests
 {
+    #region Using Directives
+
     using System.Linq;
     using System.Net;
 
     using Autommo.Dto;
-    using Autommo.Game;
     using Autommo.Game.Interfaces;
 
     using Moq;
@@ -18,7 +19,7 @@
 
     using Xunit;
 
-    using Character = Autommo.Dto.Character;
+    #endregion
 
     public class CharactersModuleTests
     {
@@ -32,8 +33,8 @@
         {
             _characterLocation = new Point
                                      {
-                                         X = 1M,
-                                         Y = 2M,
+                                         X = 1M, 
+                                         Y = 2M, 
                                          Z = 3M
                                      };
             var characters =
@@ -42,8 +43,7 @@
                         Mocks.Of<ICharacter>().
                             First(x => x.Id == new CharacterId("test") &&
                                        x.Position ==
-                                       new UnitPosition(new Cylinder(_characterLocation,
-                                                                     1M),
+                                       new UnitPosition(new Cylinder(_characterLocation, 1M), 
                                                         0M))
                     };
 
@@ -66,7 +66,8 @@
         {
             IRoute route = _test.GetRouteForRequest(new Request("GET", "/character/test"));
 
-            route.Invoke().GetDeserializedContents<Character>().Position.Location.BaseCentre.Should().Equal(_characterLocation);
+            route.Invoke().GetDeserializedContents<Character>().Position.Location.BaseCentre.
+                Should().Equal(_characterLocation);
         }
 
         [Fact]

@@ -1,11 +1,15 @@
 ﻿namespace Autommo.Game.Interfaces
 {
+    #region Using Directives
+
     using ReactiveXaml;
+
+    #endregion
 
     public interface IWorld
     {
-        ReactiveCollection<IUnit> Units { get; }
-
         ReactiveCollection<ICharacter> Characters { get; }
+
+        ReactiveCollection<IUnit> Units { get; }
     }
 }

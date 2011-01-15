@@ -1,5 +1,7 @@
 ﻿namespace Autommo.EndToEndTestEntities
 {
+    #region Using Directives
+
     using System;
     using System.Diagnostics;
     using System.Net;
@@ -8,6 +10,8 @@
     using Autommo.Dto;
 
     using EasyHttp.Http;
+
+    #endregion
 
     public class AutommoServer : IDisposable
     {

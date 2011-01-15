@@ -1,8 +1,13 @@
-﻿using Autommo.EndToEndTestEntities;
-using TechTalk.SpecFlow;
-
-namespace Autommo.EndToEndTests.Steps
+﻿namespace Autommo.EndToEndTests.Steps
 {
+    #region Using Directives
+
+    using Autommo.EndToEndTestEntities;
+
+    using TechTalk.SpecFlow;
+
+    #endregion
+
     [Binding]
     public class ServerSteps
     {

@@ -1,8 +1,12 @@
 ﻿namespace Autommo.Game
 {
+    #region Using Directives
+
     using Autommo.Game.Interfaces;
 
     using ReactiveXaml;
+
+    #endregion
 
     public class World : IWorld
     {

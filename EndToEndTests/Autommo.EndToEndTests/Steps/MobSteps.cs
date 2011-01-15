@@ -1,7 +1,11 @@
-﻿using TechTalk.SpecFlow;
-
-namespace Autommo.EndToEndTests.Steps
+﻿namespace Autommo.EndToEndTests.Steps
 {
+    #region Using Directives
+
+    using TechTalk.SpecFlow;
+
+    #endregion
+
     [Binding]
     public class MobSteps : ServerSteps
     {
