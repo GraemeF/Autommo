@@ -85,6 +85,12 @@
         <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PrivateStaticReadonly" />
         <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="EnumMember" />
         <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Other" />
+        <UserRule Inspect="False" Prefix="" Suffix="" Style="AaBb" StaticnessKind="Instance" AccessRight="Public" Description="Test method names are not inspected">
+          <ElementKinds>
+            <Kind Name="TEST_TYPE" />
+            <Kind Name="TEST_MEMBER" />
+          </ElementKinds>
+        </UserRule>
       </Naming2>
       <CustomMemberReorderingPatterns><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Patterns xmlns="urn:shemas-jetbrains-com:member-reordering-patterns">
