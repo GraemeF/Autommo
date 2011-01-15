@@ -1,6 +1,10 @@
 ﻿namespace Autommo.Console
 {
+    #region Using Directives
+
     using System;
+
+    #endregion
 
     public interface IServer : IDisposable
     {

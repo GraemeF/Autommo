@@ -1,6 +1,7 @@
 ﻿namespace Tests
 {
-    using System.Collections.Generic;
+    #region Using Directives
+
     using System.Linq;
 
     using JsonFx.Json;
@@ -8,6 +9,8 @@
     using Should.Fluent;
 
     using Xunit;
+
+    #endregion
 
     public class JsonFxTests
     {

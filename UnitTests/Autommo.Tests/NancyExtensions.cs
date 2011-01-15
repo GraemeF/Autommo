@@ -1,5 +1,7 @@
 ﻿namespace Autommo.Tests
 {
+    #region Using Directives
+
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -8,6 +10,8 @@
 
     using Nancy;
     using Nancy.Routing;
+
+    #endregion
 
     public static class NancyExtensions
     {

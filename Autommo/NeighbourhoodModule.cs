@@ -1,6 +1,7 @@
 ﻿namespace Autommo
 {
-    using System.Collections.Generic;
+    #region Using Directives
+
     using System.ComponentModel.Composition;
     using System.Net;
 
@@ -8,6 +9,8 @@
 
     using Nancy;
     using Nancy.Formatters.Responses;
+
+    #endregion
 
     [Export(typeof(NancyModule))]
     public class NeighbourhoodModule : NancyModule
@@ -20,13 +23,13 @@
                     return
                         new JsonResponse<Neighbourhood>(new Neighbourhood
                                                             {
-                                                                Mobs = new Mob[]
+                                                                Mobs = new[]
                                                                            {
                                                                                new Mob()
                                                                            }
                                                             })
                             {
-                                ContentType = Schema.ContentType,
+                                ContentType = Schema.ContentType, 
                                 StatusCode = HttpStatusCode.OK
                             };
                 };

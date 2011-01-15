@@ -1,5 +1,7 @@
 ﻿namespace Autommo
 {
+    #region Using Directives
+
     using System.ComponentModel.Composition;
     using System.Net;
 
@@ -7,6 +9,8 @@
 
     using Nancy;
     using Nancy.Formatters.Responses;
+
+    #endregion
 
     [Export(typeof(NancyModule))]
     public class MobsModule : NancyModule
@@ -19,11 +23,11 @@
                     return
                         new JsonResponse<Mob>(new Mob
                                                   {
-                                                      Location = new WorldLocation(),
+                                                      Location = new WorldLocation(), 
                                                       Status = "Idle"
                                                   })
                             {
-                                ContentType = Schema.ContentType,
+                                ContentType = Schema.ContentType, 
                                 StatusCode = HttpStatusCode.Created
                             };
                 };

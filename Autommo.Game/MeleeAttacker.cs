@@ -1,10 +1,14 @@
 ﻿namespace Autommo.Game
 {
+    #region Using Directives
+
     using Autommo.Game.Interfaces;
 
     using ReactiveXaml;
 
-    public class MeleeAttacker : Model,
+    #endregion
+
+    public class MeleeAttacker : Model, 
                                  IAutoAttacker
     {
         private bool _IsAttacking;

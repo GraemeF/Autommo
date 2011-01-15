@@ -1,5 +1,7 @@
 ﻿namespace Autommo.Console
 {
+    #region Using Directives
+
     using System;
     using System.ComponentModel.Composition;
     using System.ServiceModel;
@@ -8,8 +10,10 @@
     using Nancy;
     using Nancy.Hosting.Wcf;
 
+    #endregion
+
     [Export(typeof(IServer))]
-    public class Server : IDisposable,
+    public class Server : IDisposable, 
                           IServer
     {
         private readonly INancyModuleLocator _moduleLocator;
@@ -38,10 +42,10 @@
 
         public void Start()
         {
-            _host = new WebServiceHost(new NancyWcfGenericService(_moduleLocator),
+            _host = new WebServiceHost(new NancyWcfGenericService(_moduleLocator), 
                                        new Uri("http://localhost:" + Port));
 
-            _host.AddServiceEndpoint(typeof(NancyWcfGenericService), new WebHttpBinding(), "");
+            _host.AddServiceEndpoint(typeof(NancyWcfGenericService), new WebHttpBinding(), string.Empty);
             _host.Open();
         }
 

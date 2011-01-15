@@ -1,4 +1,8 @@
-﻿using CommandLine;
+﻿#region Using Directives
+
+using CommandLine;
+
+#endregion
 
 public class Options
 {

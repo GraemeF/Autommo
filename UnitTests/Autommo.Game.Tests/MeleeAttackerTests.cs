@@ -1,5 +1,7 @@
 ﻿namespace Autommo.Game.Tests
 {
+    #region Using Directives
+
     using Autommo.Game.Interfaces;
 
     using Moq;
@@ -7,6 +9,8 @@
     using Should.Fluent;
 
     using Xunit;
+
+    #endregion
 
     public class MeleeAttackerTests
     {

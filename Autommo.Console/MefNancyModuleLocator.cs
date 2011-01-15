@@ -1,9 +1,13 @@
 ﻿namespace Autommo.Console
 {
+    #region Using Directives
+
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
 
     using Nancy;
+
+    #endregion
 
     [Export(typeof(INancyModuleLocator))]
     public class MefNancyModuleLocator : INancyModuleLocator

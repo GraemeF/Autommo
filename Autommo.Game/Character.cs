@@ -1,5 +1,7 @@
 ﻿namespace Autommo.Game
 {
+    #region Using Directives
+
     using System;
     using System.Linq;
 
@@ -8,7 +10,9 @@
 
     using ReactiveXaml;
 
-    public class Character : Model,
+    #endregion
+
+    public class Character : Model, 
                              ICharacter
     {
         private readonly CombatStatus _CombatStatus = CombatStatus.Idle;
@@ -19,6 +23,7 @@
 
         public Character(CharacterId id, IAutoAttacker meleeAttacker)
         {
+            Id = id;
             _meleeAttacker = meleeAttacker;
 
             Subscriptions.Add(_meleeAttacker.

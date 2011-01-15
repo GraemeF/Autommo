@@ -2,7 +2,7 @@
 {
     public enum CombatStatus
     {
-        Idle,
+        Idle, 
         Fighting
     }
 }

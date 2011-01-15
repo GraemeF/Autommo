@@ -1,5 +1,7 @@
 ﻿namespace Autommo.Tests
 {
+    #region Using Directives
+
     using System.Net;
 
     using Autommo.Dto;
@@ -10,6 +12,8 @@
     using Should.Fluent;
 
     using Xunit;
+
+    #endregion
 
     public class MobsModuleTests
     {

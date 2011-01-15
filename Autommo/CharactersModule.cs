@@ -1,5 +1,7 @@
 ﻿namespace Autommo
 {
+    #region Using Directives
+
     using System.ComponentModel.Composition;
     using System.Linq;
     using System.Net;
@@ -11,6 +13,8 @@
 
     using Nancy;
     using Nancy.Formatters.Responses;
+
+    #endregion
 
     [Export(typeof(NancyModule))]
     public class CharactersModule : NancyModule
@@ -37,17 +41,16 @@
         private Response GetCharacter(CharacterId id)
         {
             ICharacter character = _world.Characters.FirstOrDefault(x => x.Id == id);
-            if (character == null)
-                return new Response
-                           {
-                               StatusCode = HttpStatusCode.NotFound
-                           };
-            return
-                new JsonResponse<Character>(Mapper.Map<ICharacter, Character>(character))
-                    {
-                        StatusCode = HttpStatusCode.OK,
-                        ContentType = Schema.ContentType
-                    };
+            return character == null
+                       ? new Response
+                             {
+                                 StatusCode = HttpStatusCode.NotFound
+                             }
+                       : new JsonResponse<Character>(Mapper.Map<ICharacter, Character>(character))
+                             {
+                                 StatusCode = HttpStatusCode.OK, 
+                                 ContentType = Schema.ContentType
+                             };
         }
     }
 }

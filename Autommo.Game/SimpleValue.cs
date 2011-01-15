@@ -1,6 +1,10 @@
 ﻿namespace Autommo.Game
 {
+    #region Using Directives
+
     using System;
+
+    #endregion
 
     public abstract class SimpleValue<TValue>
     {
