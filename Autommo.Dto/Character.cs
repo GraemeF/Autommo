@@ -1,10 +1,14 @@
 ﻿namespace Autommo.Dto
 {
+    using System;
+
     public class Character
     {
         public UnitPosition Position { get; set; }
 
         public string Status { get; set; }
+
+        public string Name { get; set; }
     }
 
     public class UnitPosition

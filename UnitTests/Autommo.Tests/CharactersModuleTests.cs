@@ -23,6 +23,8 @@
 
     public class CharactersModuleTests
     {
+        private readonly ICharacter _addedCharacter = Mock.Of<ICharacter>();
+
         private readonly Point _characterLocation;
 
         private readonly CharactersModule _test;
@@ -50,7 +52,7 @@
             _world = Mocks.Of<IWorld>().
                 First(x => x.Characters == characters);
 
-            _test = new CharactersModule(_world);
+            _test = new CharactersModule(_world, _ => _addedCharacter);
         }
 
         [Fact]
@@ -79,11 +81,39 @@
         }
 
         [Fact]
+        public void PostCharacter_WhenGivenACharacterWithUnusedName_GivesCreatedResponse()
+        {
+            CreateCharacterCalledBob().StatusCode.Should().Equal(HttpStatusCode.Created);
+        }
+
+        [Fact]
+        public void PostCharacter_WhenGivenACharacterWithUnusedName_GivesLocationInResponse()
+        {
+            CreateCharacterCalledBob().Headers["Location"].Single().
+                Should().Equal(string.Empty);
+        }
+
+        [Fact]
         public void PostRoute_WhenRouteCanBeExtended_GivesCreatedResponse()
         {
             IRoute route = _test.GetRouteForRequest(new Request("POST", "/character/test/route"));
 
             route.Invoke().StatusCode.Should().Equal(HttpStatusCode.Created);
+        }
+
+        private Response CreateCharacterCalledBob()
+        {
+            var request = new Request("POST", "/character")
+                              {
+                                  Body = new Character
+                                             {
+                                                 Name = "Bob"
+                                             }.ToRequestBody()
+                              };
+
+            IRoute route = _test.GetRouteForRequest(request);
+
+            return route.Invoke();
         }
     }
 }

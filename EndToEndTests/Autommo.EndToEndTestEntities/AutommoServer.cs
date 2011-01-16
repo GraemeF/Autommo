@@ -120,5 +120,13 @@
 
             return client.Response.StaticBody<Character>();
         }
+
+        public Character AddCharacter(string id)
+        {
+            var client = new HttpClient();
+            client.Put(CreateUri("/character/" + id), new Character(), Schema.ContentType);
+
+            return client.Response.StaticBody<Character>();
+        }
     }
 }

@@ -48,6 +48,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Admin.feature</DependentUpon>
+    </Compile>
     <Compile Include="Combat.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -59,11 +64,10 @@
       <DependentUpon>Movement.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\CharacterSteps.cs" />
     <Compile Include="Steps\ServerSteps.cs" />
-    <Compile Include="Steps\CombatSteps.cs" />
     <Compile Include="Steps\MobSteps.cs" />
     <Compile Include="Steps\MovementSteps.cs" />
-    <Compile Include="Steps\SurveySteps.cs" />
     <Compile Include="Survey.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +75,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Admin.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Admin.feature.cs</LastGenOutput>
+    </None>
     <None Include="App.config" />
     <None Include="Combat.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

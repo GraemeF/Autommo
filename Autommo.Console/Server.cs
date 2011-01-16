@@ -13,8 +13,7 @@
     #endregion
 
     [Export(typeof(IServer))]
-    public class Server : IDisposable, 
-                          IServer
+    public class Server : IServer
     {
         private readonly INancyModuleLocator _moduleLocator;
 

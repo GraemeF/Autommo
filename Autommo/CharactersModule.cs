@@ -2,6 +2,7 @@
 {
     #region Using Directives
 
+    using System;
     using System.ComponentModel.Composition;
     using System.Linq;
     using System.Net;
@@ -19,23 +20,42 @@
     [Export(typeof(NancyModule))]
     public class CharactersModule : NancyModule
     {
+        private const string CharacterPath = "/character";
+        private const string CharacterIdPath = CharacterPath+"/{id}";
+
+        private const string RoutePath = CharacterPath + "/route";
+
+        private readonly Func<CharacterId, ICharacter> _characterFactory;
+
         private readonly IWorld _world;
 
         [ImportingConstructor]
-        public CharactersModule(IWorld world)
+        public CharactersModule(IWorld world, Func<CharacterId, ICharacter> characterFactory)
         {
             Mapper.CreateMap<ICharacter, Character>();
 
             _world = world;
-            Get["/character/{id}"] = parameters => GetCharacter(new CharacterId((string)parameters.id));
-            Post["/character/test/route"] = parameters =>
-                {
-                    return
-                        new Response
-                            {
-                                StatusCode = HttpStatusCode.Created
-                            };
-                };
+            _characterFactory = characterFactory;
+            RegisterRoutes();
+        }
+
+        private ICharacter AddCharacter(CharacterId characterId)
+        {
+            ICharacter character = _characterFactory(characterId);
+            _world.Characters.Add(character);
+
+            return character;
+        }
+
+        private JsonResponse<Character> CreateCharacter(Character character)
+        {
+            var response = new JsonResponse<Character>(
+                Mapper.Map<ICharacter, Character>(AddCharacter(new CharacterId(character.Name))))
+                               {
+                                   StatusCode = HttpStatusCode.Created
+                               };
+            response.Headers["Location"] = new[] { CharacterPath.Replace("{id}", character.Name) };
+            return response;
         }
 
         private Response GetCharacter(CharacterId id)
@@ -51,6 +71,20 @@
                                  StatusCode = HttpStatusCode.OK, 
                                  ContentType = Schema.ContentType
                              };
+        }
+
+        private void RegisterRoutes()
+        {
+            Get[CharacterIdPath] = parameters => GetCharacter(new CharacterId((string)parameters.id));
+            Post[CharacterPath] = parameters => CreateCharacter(parameters.Body);
+            Post[RoutePath] = parameters =>
+                {
+                    return
+                        new Response
+                            {
+                                StatusCode = HttpStatusCode.Created
+                            };
+                };
         }
     }
 }

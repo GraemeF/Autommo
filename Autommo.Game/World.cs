@@ -2,12 +2,15 @@
 {
     #region Using Directives
 
+    using System.ComponentModel.Composition;
+
     using Autommo.Game.Interfaces;
 
     using ReactiveXaml;
 
     #endregion
 
+    [Export(typeof(IWorld))]
     public class World : IWorld
     {
         public World()

@@ -33,5 +33,14 @@
 
             return new RouteResolver().GetRoute(request, descriptions);
         }
+
+        public static Stream ToRequestBody<TContents>(this TContents contents)
+        {
+            var memory = new MemoryStream();
+            var writer = new StreamWriter(memory);
+            new JsonWriter().Write(contents, writer);
+            memory.Position = 0;
+            return memory;
+        }
     }
 }
