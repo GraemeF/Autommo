@@ -41,9 +41,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Reactive, Version=1.0.2838.104, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages-submodules\ReactiveXaml\ext\System.Reactive.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -79,10 +76,6 @@
     <ProjectReference Include="..\..\Autommo.Game\Autommo.Game.csproj">
       <Project>{8E7298C6-8BC3-48A1-B2E9-03B3F6121095}</Project>
       <Name>Autommo.Game</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\packages-submodules\ReactiveXaml\ReactiveXaml\ReactiveXaml.csproj">
-      <Project>{292A477B-BB94-43C1-984E-E177EF9FEDB7}</Project>
-      <Name>ReactiveXaml</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
