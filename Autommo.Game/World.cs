@@ -6,7 +6,7 @@
 
     using Autommo.Game.Interfaces;
 
-    using ReactiveXaml;
+    using ReactiveUI;
 
     #endregion
 

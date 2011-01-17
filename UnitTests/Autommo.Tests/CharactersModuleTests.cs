@@ -13,7 +13,7 @@
     using Nancy;
     using Nancy.Routing;
 
-    using ReactiveXaml;
+    using ReactiveUI;
 
     using Should.Fluent;
 

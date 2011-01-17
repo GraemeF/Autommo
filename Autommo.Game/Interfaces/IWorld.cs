@@ -2,7 +2,7 @@
 {
     #region Using Directives
 
-    using ReactiveXaml;
+    using ReactiveUI;
 
     #endregion
 

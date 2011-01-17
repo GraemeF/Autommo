@@ -9,7 +9,7 @@
 
     using Moq;
 
-    using ReactiveXaml;
+    using ReactiveUI;
 
     using Should.Fluent;
 
