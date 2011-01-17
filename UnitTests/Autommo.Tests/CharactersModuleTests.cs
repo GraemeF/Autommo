@@ -2,6 +2,7 @@
 {
     #region Using Directives
 
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
 
@@ -90,7 +91,7 @@
         public void PostCharacter_WhenGivenACharacterWithUnusedName_GivesLocationInResponse()
         {
             CreateCharacterCalledBob().Headers["Location"].Single().
-                Should().Equal(string.Empty);
+                Should().Equal("/character/bob");
         }
 
         [Fact]
@@ -103,14 +104,15 @@
 
         private Response CreateCharacterCalledBob()
         {
-            var request = new Request("POST", "/character")
-                              {
-                                  Body = new Character
-                                             {
-                                                 Name = "Bob"
-                                             }.ToRequestBody()
-                              };
+            var request = new Request("POST", 
+                                      "/character", 
+                                      new Dictionary<string, IEnumerable<string>>(), 
+                                      new Character
+                                          {
+                                              Name = "Bob"
+                                          }.ToRequestBody());
 
+            _test.Request = request;
             IRoute route = _test.GetRouteForRequest(request);
 
             return route.Invoke();

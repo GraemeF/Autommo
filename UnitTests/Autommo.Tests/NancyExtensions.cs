@@ -6,10 +6,10 @@
     using System.IO;
     using System.Linq;
 
-    using JsonFx.Json;
-
     using Nancy;
     using Nancy.Routing;
+
+    using Newtonsoft.Json;
 
     #endregion
 
@@ -20,9 +20,8 @@
             var memory = new MemoryStream();
             response.Contents.Invoke(memory);
             memory.Position = 0;
-
             using (var reader = new StreamReader(memory))
-                return new JsonReader().Read<TContents>(reader);
+                return JsonConvert.DeserializeObject<TContents>(reader.ReadToEnd());
         }
 
         public static IRoute GetRouteForRequest(this NancyModule module, Request request)
@@ -38,7 +37,9 @@
         {
             var memory = new MemoryStream();
             var writer = new StreamWriter(memory);
-            new JsonWriter().Write(contents, writer);
+            var serializedObject = JsonConvert.SerializeObject(contents);
+            writer.Write(serializedObject);
+            writer.Flush();
             memory.Position = 0;
             return memory;
         }

@@ -31,11 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JsonFx">
-      <HintPath>..\..\packages-submodules\EasyHttp\src\packages\jsonfx\JsonFx.dll</HintPath>
-    </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\packages-manual\Moq\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.1\lib\40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ReactiveUI">
       <HintPath>..\..\packages\reactiveui-core.2.0.0.2\lib\Net4\ReactiveUI.dll</HintPath>
@@ -68,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharactersModuleTests.cs" />
-    <Compile Include="JsonFxTests.cs" />
     <Compile Include="MobsModuleTests.cs" />
     <Compile Include="NancyExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

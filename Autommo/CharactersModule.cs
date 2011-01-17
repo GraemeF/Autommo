@@ -20,10 +20,11 @@
     [Export(typeof(NancyModule))]
     public class CharactersModule : NancyModule
     {
-        private const string CharacterPath = "/character";
-        private const string CharacterIdPath = CharacterPath+"/{id}";
+        private const string CharacterIdPath = CharacterPath + "/{id}";
 
-        private const string RoutePath = CharacterPath + "/route";
+        private const string CharacterPath = "/character";
+
+        private const string RoutePath = CharacterIdPath + "/route";
 
         private readonly Func<CharacterId, ICharacter> _characterFactory;
 
@@ -54,7 +55,7 @@
                                {
                                    StatusCode = HttpStatusCode.Created
                                };
-            response.Headers["Location"] = new[] { CharacterPath.Replace("{id}", character.Name) };
+            response.Headers["Location"] = new[] { CharacterIdPath.Replace("{id}", character.Name.ToLowerInvariant()) };
             return response;
         }
 
@@ -76,7 +77,7 @@
         private void RegisterRoutes()
         {
             Get[CharacterIdPath] = parameters => GetCharacter(new CharacterId((string)parameters.id));
-            Post[CharacterPath] = parameters => CreateCharacter(parameters.Body);
+            Post[CharacterPath] = parameters => CreateCharacter(Request.GetBodyAs<Character>());
             Post[RoutePath] = parameters =>
                 {
                     return
