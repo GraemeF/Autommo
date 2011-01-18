@@ -37,10 +37,21 @@
 
             _world = world;
             _characterFactory = characterFactory;
+
             RegisterRoutes();
         }
 
-        private ICharacter AddCharacter(CharacterId characterId)
+        private static CharacterId GetCharacterId(Character character)
+        {
+            return new CharacterId(character.Name);
+        }
+
+        private static void SetCharacterLocationHeader(CharacterId id, JsonResponse<Character> response)
+        {
+            response.Headers["Location"] = new[] { CharacterIdPath.Replace("{id}", id.ToString().ToLowerInvariant()) };
+        }
+
+        private ICharacter AddNewCharacterToWorld(CharacterId characterId)
         {
             ICharacter character = _characterFactory(characterId);
             _world.Characters.Add(character);
@@ -48,14 +59,15 @@
             return character;
         }
 
-        private JsonResponse<Character> CreateCharacter(Character character)
+        private JsonResponse<Character> CreateCharacter(CharacterId id)
         {
-            var response = new JsonResponse<Character>(
-                Mapper.Map<ICharacter, Character>(AddCharacter(new CharacterId(character.Name))))
-                               {
-                                   StatusCode = HttpStatusCode.Created
-                               };
-            response.Headers["Location"] = new[] { CharacterIdPath.Replace("{id}", character.Name.ToLowerInvariant()) };
+            ICharacter newCharacter = AddNewCharacterToWorld(id);
+            var response =
+                new JsonResponse<Character>(Mapper.Map<ICharacter, Character>(newCharacter))
+                    {
+                        StatusCode = HttpStatusCode.Created
+                    };
+            SetCharacterLocationHeader(id, response);
             return response;
         }
 
@@ -77,7 +89,7 @@
         private void RegisterRoutes()
         {
             Get[CharacterIdPath] = parameters => GetCharacter(new CharacterId((string)parameters.id));
-            Post[CharacterPath] = parameters => CreateCharacter(Request.GetBodyAs<Character>());
+            Post[CharacterPath] = parameters => CreateCharacter(GetCharacterId(Request.GetBodyAs<Character>()));
             Post[RoutePath] = parameters =>
                 {
                     return
