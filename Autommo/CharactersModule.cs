@@ -3,7 +3,6 @@
     #region Using Directives
 
     using System;
-    using System.ComponentModel.Composition;
     using System.Linq;
     using System.Net;
 
@@ -17,7 +16,6 @@
 
     #endregion
 
-    [Export(typeof(NancyModule))]
     public class CharactersModule : NancyModule
     {
         private const string CharacterIdPath = CharacterPath + "/{id}";
@@ -30,7 +28,6 @@
 
         private readonly IWorld _world;
 
-        [ImportingConstructor]
         public CharactersModule(IWorld world, Func<CharacterId, ICharacter> characterFactory)
         {
             Mapper.CreateMap<ICharacter, Character>();
@@ -48,7 +45,7 @@
 
         private static void SetCharacterLocationHeader(CharacterId id, JsonResponse<Character> response)
         {
-            response.Headers["Location"] = new[] { CharacterIdPath.Replace("{id}", id.ToString().ToLowerInvariant()) };
+            response.Headers["Location"] = CharacterIdPath.Replace("{id}", id.ToString().ToLowerInvariant());
         }
 
         private ICharacter AddNewCharacterToWorld(CharacterId characterId)

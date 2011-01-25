@@ -2,12 +2,10 @@
 {
     #region Using Directives
 
-    using System.Collections.Generic;
+    using System;
     using System.IO;
-    using System.Linq;
 
     using Nancy;
-    using Nancy.Routing;
 
     using Newtonsoft.Json;
 
@@ -24,20 +22,23 @@
                 return JsonConvert.DeserializeObject<TContents>(reader.ReadToEnd());
         }
 
-        public static IRoute GetRouteForRequest(this NancyModule module, Request request)
+        public static Response InvokeRouteForRequest(this NancyModule module,
+                                                     Request request,
+                                                     string route = null,
+                                                     DynamicDictionary parameters = null)
         {
-            var modules = new[] { module };
-            IEnumerable<RouteDescription> descriptions =
-                modules.SelectMany(x => Nancy.Extensions.NancyExtensions.GetRouteDescription(x, request));
-
-            return new RouteResolver().GetRoute(request, descriptions);
+            module.Request = request;
+            return module.
+                GetRoutes(module.Request.Method).
+                GetRoute(route ?? new Uri(module.Request.Uri).PathAndQuery).
+                Action(parameters);
         }
 
         public static Stream ToRequestBody<TContents>(this TContents contents)
         {
             var memory = new MemoryStream();
             var writer = new StreamWriter(memory);
-            var serializedObject = JsonConvert.SerializeObject(contents);
+            string serializedObject = JsonConvert.SerializeObject(contents);
             writer.Write(serializedObject);
             writer.Flush();
             memory.Position = 0;

@@ -7,7 +7,6 @@
     using Autommo.Dto;
 
     using Nancy;
-    using Nancy.Routing;
 
     using Should.Fluent;
 
@@ -22,17 +21,15 @@
         [Fact]
         public void PostMob_WhenMobCanBeCreated_GivesCreatedResponse()
         {
-            IRoute route = _test.GetRouteForRequest(new Request("POST", "/mob"));
-
-            route.Invoke().StatusCode.Should().Equal(HttpStatusCode.Created);
+            _test.InvokeRouteForRequest(new Request("POST", "http://localhost/mob", "http")).StatusCode.
+                Should().Equal(HttpStatusCode.Created);
         }
 
         [Fact]
         public void PostMob_WhenMobCanBeCreated_GivesResponseContainingMob()
         {
-            IRoute route = _test.GetRouteForRequest(new Request("POST", "/mob"));
-
-            route.Invoke().GetDeserializedContents<Mob>().Should().Be.OfType(typeof(Mob));
+            _test.InvokeRouteForRequest(new Request("POST", "http://localhost/mob", "http")).
+                GetDeserializedContents<Mob>().Should().Be.OfType(typeof(Mob));
         }
     }
 }

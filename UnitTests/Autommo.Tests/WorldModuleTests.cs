@@ -5,7 +5,6 @@
     using System.Net;
 
     using Nancy;
-    using Nancy.Routing;
 
     using Should.Fluent;
 
@@ -20,9 +19,8 @@
         [Fact]
         public void GetStatus__ReturnsOKStatus()
         {
-            IRoute route = _test.GetRouteForRequest(new Request("GET", "/status"));
-
-            route.Invoke().StatusCode.Should().Equal(HttpStatusCode.OK);
+            _test.InvokeRouteForRequest(new Request("GET", "http://localhost/status", "http")).
+                StatusCode.Should().Equal(HttpStatusCode.OK);
         }
     }
 }

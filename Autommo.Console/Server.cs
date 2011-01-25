@@ -3,26 +3,23 @@
     #region Using Directives
 
     using System;
-    using System.ComponentModel.Composition;
     using System.ServiceModel;
     using System.ServiceModel.Web;
 
-    using Nancy;
+    using Nancy.BootStrapper;
     using Nancy.Hosting.Wcf;
 
     #endregion
 
-    [Export(typeof(IServer))]
     public class Server : IServer
     {
-        private readonly INancyModuleLocator _moduleLocator;
+        private readonly INancyBootStrapper _bootstrapper;
 
         private WebServiceHost _host;
 
-        [ImportingConstructor]
-        public Server(INancyModuleLocator moduleLocator)
+        public Server(INancyBootStrapper bootStrapper)
         {
-            _moduleLocator = moduleLocator;
+            _bootstrapper = bootStrapper;
         }
 
         public int Port { get; set; }
@@ -41,7 +38,7 @@
 
         public void Start()
         {
-            _host = new WebServiceHost(new NancyWcfGenericService(_moduleLocator), 
+            _host = new WebServiceHost(new NancyWcfGenericService(_bootstrapper),
                                        new Uri("http://localhost:" + Port));
 
             _host.AddServiceEndpoint(typeof(NancyWcfGenericService), new WebHttpBinding(), string.Empty);

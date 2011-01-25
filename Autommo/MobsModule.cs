@@ -2,7 +2,6 @@
 {
     #region Using Directives
 
-    using System.ComponentModel.Composition;
     using System.Net;
 
     using Autommo.Dto;
@@ -12,10 +11,8 @@
 
     #endregion
 
-    [Export(typeof(NancyModule))]
     public class MobsModule : NancyModule
     {
-        [ImportingConstructor]
         public MobsModule()
         {
             Post["/mob"] = parameters =>

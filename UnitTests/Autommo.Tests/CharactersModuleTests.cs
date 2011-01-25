@@ -12,7 +12,6 @@
     using Moq;
 
     using Nancy;
-    using Nancy.Routing;
 
     using ReactiveUI;
 
@@ -36,8 +35,8 @@
         {
             _characterLocation = new Point
                                      {
-                                         X = 1M, 
-                                         Y = 2M, 
+                                         X = 1M,
+                                         Y = 2M,
                                          Z = 3M
                                      };
             var characters =
@@ -46,7 +45,7 @@
                         Mocks.Of<ICharacter>().
                             First(x => x.Id == new CharacterId("test") &&
                                        x.Position ==
-                                       new UnitPosition(new Cylinder(_characterLocation, 1M), 
+                                       new UnitPosition(new Cylinder(_characterLocation, 1M),
                                                         0M))
                     };
 
@@ -59,26 +58,23 @@
         [Fact]
         public void GetCharacter_WhenGivenAKnownCharacterInUri_GivesOKResponse()
         {
-            IRoute route = _test.GetRouteForRequest(new Request("GET", "/character/test"));
-
-            route.Invoke().StatusCode.Should().Equal(HttpStatusCode.OK);
+            _test.InvokeRouteForRequest(new Request("GET", "http://localhost/character/test", "http")).
+                StatusCode.Should().Equal(HttpStatusCode.OK);
         }
 
         [Fact]
         public void GetCharacter_WhenGivenAKnownCharacterInUri_IncludesCharacterInResponse()
         {
-            IRoute route = _test.GetRouteForRequest(new Request("GET", "/character/test"));
-
-            route.Invoke().GetDeserializedContents<Character>().Position.Location.BaseCentre.
+            _test.InvokeRouteForRequest(new Request("GET", "http://localhost/character/test", "http")).
+                GetDeserializedContents<Character>().Position.Location.BaseCentre.
                 Should().Equal(_characterLocation);
         }
 
         [Fact]
         public void GetCharacter_WhenGivenAnUnrecognisedCharacterInUri_GivesNotFoundResponse()
         {
-            IRoute route = _test.GetRouteForRequest(new Request("GET", "/character/thisdoesnotexist"));
-
-            route.Invoke().StatusCode.Should().Equal(HttpStatusCode.NotFound);
+            _test.InvokeRouteForRequest(new Request("GET", "http://localhost/character/thisdoesnotexist", "http")).
+                StatusCode.Should().Equal(HttpStatusCode.NotFound);
         }
 
         [Fact]
@@ -97,25 +93,22 @@
         [Fact]
         public void PostRoute_WhenRouteCanBeExtended_GivesCreatedResponse()
         {
-            IRoute route = _test.GetRouteForRequest(new Request("POST", "/character/test/route"));
-
-            route.Invoke().StatusCode.Should().Equal(HttpStatusCode.Created);
+            _test.InvokeRouteForRequest(new Request("POST", "http://localhost/character/test/route", "http")).
+                StatusCode.Should().Equal(HttpStatusCode.Created);
         }
 
         private Response CreateCharacterCalledBob()
         {
-            var request = new Request("POST", 
-                                      "/character", 
-                                      new Dictionary<string, IEnumerable<string>>(), 
+            var request = new Request("POST",
+                                      "http://localhost/character",
+                                      new Dictionary<string, IEnumerable<string>>(),
                                       new Character
                                           {
                                               Name = "Bob"
-                                          }.ToRequestBody());
+                                          }.ToRequestBody(),
+                                      "http");
 
-            _test.Request = request;
-            IRoute route = _test.GetRouteForRequest(request);
-
-            return route.Invoke();
+            return _test.InvokeRouteForRequest(request);
         }
     }
 }

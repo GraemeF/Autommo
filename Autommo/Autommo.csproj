@@ -42,7 +42,6 @@
       <HintPath>..\packages\reactiveui-core.2.0.0.2\lib\Net4\ReactiveUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.CoreEx">
