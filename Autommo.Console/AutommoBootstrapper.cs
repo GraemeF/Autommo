@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class AutommoBootstrapper : DefaultNancyBootStrapper
+    public class AutommoBootstrapper : DefaultNancyBootstrapper
     {
     }
 }

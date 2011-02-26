@@ -6,20 +6,20 @@
     using System.ServiceModel;
     using System.ServiceModel.Web;
 
-    using Nancy.BootStrapper;
+    using Nancy.Bootstrapper;
     using Nancy.Hosting.Wcf;
 
     #endregion
 
     public class Server : IServer
     {
-        private readonly INancyBootStrapper _bootstrapper;
+        private readonly INancyBootstrapper _bootstrapper;
 
         private WebServiceHost _host;
 
-        public Server(INancyBootStrapper bootStrapper)
+        public Server(INancyBootstrapper bootstrapper)
         {
-            _bootstrapper = bootStrapper;
+            _bootstrapper = bootstrapper;
         }
 
         public int Port { get; set; }
