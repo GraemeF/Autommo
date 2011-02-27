@@ -4,7 +4,6 @@
 
     using System;
     using System.Linq;
-    using System.Net;
 
     using AutoMapper;
 
@@ -12,7 +11,7 @@
     using Autommo.Game.Interfaces;
 
     using Nancy;
-    using Nancy.Formatters.Responses;
+    using Nancy.Responses;
 
     #endregion
 

@@ -4,7 +4,6 @@
 
     using System.Collections.Generic;
     using System.Linq;
-    using System.Net;
 
     using Autommo.Dto;
     using Autommo.Game.Interfaces;
@@ -35,8 +34,8 @@
         {
             _characterLocation = new Point
                                      {
-                                         X = 1M,
-                                         Y = 2M,
+                                         X = 1M, 
+                                         Y = 2M, 
                                          Z = 3M
                                      };
             var characters =
@@ -45,7 +44,7 @@
                         Mocks.Of<ICharacter>().
                             First(x => x.Id == new CharacterId("test") &&
                                        x.Position ==
-                                       new UnitPosition(new Cylinder(_characterLocation, 1M),
+                                       new UnitPosition(new Cylinder(_characterLocation, 1M), 
                                                         0M))
                     };
 
@@ -99,13 +98,13 @@
 
         private Response CreateCharacterCalledBob()
         {
-            var request = new Request("POST",
-                                      "http://localhost/character",
-                                      new Dictionary<string, IEnumerable<string>>(),
+            var request = new Request("POST", 
+                                      "http://localhost/character", 
+                                      new Dictionary<string, IEnumerable<string>>(), 
                                       new Character
                                           {
                                               Name = "Bob"
-                                          }.ToRequestBody(),
+                                          }.ToRequestBody(), 
                                       "http");
 
             return _test.InvokeRouteForRequest(request);

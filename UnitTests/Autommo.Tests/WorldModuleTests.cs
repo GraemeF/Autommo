@@ -2,8 +2,6 @@
 {
     #region Using Directives
 
-    using System.Net;
-
     using Nancy;
 
     using Should.Fluent;

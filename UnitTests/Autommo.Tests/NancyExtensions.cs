@@ -4,6 +4,7 @@
 
     using System;
     using System.IO;
+    using System.Linq;
 
     using Nancy;
 
@@ -22,15 +23,15 @@
                 return JsonConvert.DeserializeObject<TContents>(reader.ReadToEnd());
         }
 
-        public static Response InvokeRouteForRequest(this NancyModule module,
-                                                     Request request,
-                                                     string route = null,
+        public static Response InvokeRouteForRequest(this NancyModule module, 
+                                                     Request request, 
+                                                     string route = null, 
                                                      DynamicDictionary parameters = null)
         {
             module.Request = request;
-            return module.
-                GetRoutes(module.Request.Method).
-                GetRoute(route ?? new Uri(module.Request.Uri).PathAndQuery).
+            return module.Routes.
+                First(x => x.Description.Method == module.Request.Method &&
+                           x.Description.Path == (route ?? new Uri(module.Request.Uri).PathAndQuery)).
                 Action(parameters);
         }
 

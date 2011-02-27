@@ -53,7 +53,6 @@
     <Reference Include="System.Reactive">
       <HintPath>..\packages\Rx-Main.1.0.2838.0\lib\Net4\System.Reactive.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharactersModule.cs" />
@@ -71,10 +70,6 @@
     <ProjectReference Include="..\Autommo.Game\Autommo.Game.csproj">
       <Project>{8E7298C6-8BC3-48A1-B2E9-03B3F6121095}</Project>
       <Name>Autommo.Game</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\packages-submodules\Nancy\src\Nancy.Formatters\Nancy.Formatters.csproj">
-      <Project>{25643482-07E3-4981-9FBD-210CDF108AA8}</Project>
-      <Name>Nancy.Formatters</Name>
     </ProjectReference>
     <ProjectReference Include="..\packages-submodules\Nancy\src\Nancy\Nancy.csproj">
       <Project>{34576216-0DCA-4B0F-A0DC-9075E75A676F}</Project>

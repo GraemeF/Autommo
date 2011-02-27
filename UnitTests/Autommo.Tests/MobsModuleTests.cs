@@ -2,8 +2,6 @@
 {
     #region Using Directives
 
-    using System.Net;
-
     using Autommo.Dto;
 
     using Nancy;

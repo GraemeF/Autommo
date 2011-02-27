@@ -2,12 +2,10 @@
 {
     #region Using Directives
 
-    using System.Net;
-
     using Autommo.Dto;
 
     using Nancy;
-    using Nancy.Formatters.Responses;
+    using Nancy.Responses;
 
     #endregion
 
