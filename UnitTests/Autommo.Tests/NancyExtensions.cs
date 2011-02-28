@@ -3,10 +3,12 @@
     #region Using Directives
 
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
 
     using Nancy;
+    using Nancy.Routing;
 
     using Newtonsoft.Json;
 
@@ -25,13 +27,14 @@
 
         public static Response InvokeRouteForRequest(this NancyModule module, 
                                                      Request request, 
-                                                     string route = null, 
+                                                     string route, 
                                                      DynamicDictionary parameters = null)
         {
+            module.Context = new NancyContext();
             module.Request = request;
             return module.Routes.
                 First(x => x.Description.Method == module.Request.Method &&
-                           x.Description.Path == (route ?? new Uri(module.Request.Uri).PathAndQuery)).
+                           x.Description.Path == route).
                 Action(parameters);
         }
 
@@ -44,6 +47,30 @@
             writer.Flush();
             memory.Position = 0;
             return memory;
+        }
+
+        private class TestModuleCatalog : INancyModuleCatalog
+        {
+            private readonly NancyModule _moduleUnderTest;
+
+            public TestModuleCatalog(NancyModule moduleUnderTest)
+            {
+                _moduleUnderTest = moduleUnderTest;
+            }
+
+            #region INancyModuleCatalog members
+
+            public IEnumerable<NancyModule> GetAllModules(NancyContext context)
+            {
+                return new[] { _moduleUnderTest };
+            }
+
+            public NancyModule GetModuleByKey(string moduleKey, NancyContext context)
+            {
+                throw new NotSupportedException();
+            }
+
+            #endregion
         }
     }
 }

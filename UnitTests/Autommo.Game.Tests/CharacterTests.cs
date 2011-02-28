@@ -7,7 +7,7 @@
 
     using Autommo.Game.Interfaces;
 
-    using Moq;
+    using NSubstitute;
 
     using ReactiveUI;
 
@@ -19,22 +19,21 @@
 
     public class CharacterTests
     {
-        private readonly IAutoAttacker _meleeAttacker;
+        private readonly IAutoAttacker _meleeAttacker = Substitute.For<IAutoAttacker>();
 
         private readonly Subject<IObservedChange<object, object>> _meleeAttackerPropertyChanged =
             new Subject<IObservedChange<object, object>>();
 
-        private readonly IUnit _newTarget = Mock.Of<IUnit>();
+        private readonly IUnit _newTarget = Substitute.For<IUnit>();
 
-        private readonly IUnit _originalTarget = Mock.Of<IUnit>();
+        private readonly IUnit _originalTarget = Substitute.For<IUnit>();
 
         private readonly Character _test;
 
         public CharacterTests()
         {
-            _meleeAttacker = Mocks.Of<IAutoAttacker>().
-                First(autoAttacker => autoAttacker.Changed == _meleeAttackerPropertyChanged &&
-                                      autoAttacker.Target == _originalTarget);
+            _meleeAttacker.Changed.Returns(_meleeAttackerPropertyChanged);
+            _meleeAttacker.Target.Returns(_originalTarget);
 
             _test = new Character(new CharacterId("test"), _meleeAttacker);
         }
@@ -44,7 +43,7 @@
         {
             _test.Attack(_newTarget);
 
-            Mock.Get(_meleeAttacker).Verify(x => x.Attack(_newTarget));
+            _meleeAttacker.Received().Attack(_newTarget);
         }
 
         [Fact]
@@ -87,9 +86,7 @@
 
         private void AttackerIsAttackingChangesTo(bool newValue)
         {
-            Mock.Get(_meleeAttacker).
-                Setup(x => x.IsAttacking).
-                Returns(newValue);
+            _meleeAttacker.IsAttacking.Returns(newValue);
 
             _meleeAttackerPropertyChanged.
                 OnNext(new ObservedChange<object, object>
@@ -106,9 +103,7 @@
 
         private void AttackerTargetChangesTo(IUnit newTarget)
         {
-            Mock.Get(_meleeAttacker).
-                Setup(x => x.Target).
-                Returns(newTarget);
+            _meleeAttacker.Target.Returns(newTarget);
 
             _meleeAttackerPropertyChanged.
                 OnNext(new ObservedChange<object, object>

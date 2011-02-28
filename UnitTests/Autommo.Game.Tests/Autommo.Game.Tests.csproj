@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq">
-      <HintPath>..\..\packages-manual\Moq\Moq.dll</HintPath>
+    <Reference Include="NSubstitute">
+      <HintPath>..\..\packages\NSubstitute.1.0.0.0\lib\35\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="ReactiveUI">
       <HintPath>..\..\packages\reactiveui-core.2.0.0.2\lib\Net4\ReactiveUI.dll</HintPath>

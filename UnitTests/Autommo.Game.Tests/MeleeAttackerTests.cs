@@ -4,7 +4,7 @@
 
     using Autommo.Game.Interfaces;
 
-    using Moq;
+    using NSubstitute;
 
     using Should.Fluent;
 
@@ -14,7 +14,7 @@
 
     public class MeleeAttackerTests
     {
-        private readonly IUnit _newTarget = Mock.Of<IUnit>();
+        private readonly IUnit _newTarget = Substitute.For<IUnit>();
 
         private readonly MeleeAttacker _test = new MeleeAttacker();
 
