@@ -3,8 +3,6 @@
     #region Using Directives
 
     using System;
-    using System.IO;
-    using System.Reflection;
 
     using CommandLine;
 
@@ -18,8 +16,11 @@
             if (!Parser.ParseArgumentsWithUsage(args, options))
                 return;
 
-            using (StartServer(options))
+            using (IServer server = StartServer(options))
+            {
+                Console.WriteLine("Listening on port " + server.Port);
                 Console.ReadLine();
+            }
         }
 
         private static IServer StartServer(Options options)
