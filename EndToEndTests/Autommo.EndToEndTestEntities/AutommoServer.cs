@@ -5,7 +5,6 @@
     using System;
     using System.Diagnostics;
     using System.Net;
-    using System.Threading;
 
     using Autommo.Dto;
 
@@ -46,34 +45,44 @@
 
         public AutommoServer()
         {
+            EnsureServerIsNotRunning();
+
             _process = Process.Start(ServerPath, "/port:8099");
 
             WaitForServerToStartResponding();
         }
 
-        private void WaitForServerToStartResponding()
+        private void EnsureServerIsNotRunning()
         {
-            for (int remainingTries = 50; remainingTries >= 0; remainingTries--)
-                try
-                {
-                    PingServer();
-                    break;
-                }
-                catch (WebException)
-                {
-                    if (remainingTries == 0)
-                        throw;
-
-                    Thread.Sleep(100);
-                }
+            Retry.Until(() => !PingServer(), "The server is already running.");
         }
 
-        private void PingServer()
+        private void WaitForServerToStartResponding()
         {
-            new HttpClient().Get(new Uri(BaseUri, "/status").AbsoluteUri);
+            Retry.Until(() => _process.Responding &&
+                              PingServer(), 
+                        "The server did not respond in time.");
+        }
+
+        private bool PingServer()
+        {
+            try
+            {
+                WebRequest.Create(CreateUri("/status")).GetResponse();
+                return true;
+            }
+            catch (WebException)
+            {
+                return false;
+            }
         }
 
         private void Dispose(bool disposing)
+        {
+            Retry.Until(Close, "Could not stop server.");
+        }
+
+        private bool Close()
         {
             try
             {
@@ -81,9 +90,9 @@
             }
             catch (InvalidOperationException)
             {
-                if (!_process.HasExited)
-                    throw;
             }
+
+            return _process.HasExited;
         }
 
         public Mob AddMob()
@@ -94,7 +103,7 @@
             return client.Response.StaticBody<Mob>();
         }
 
-        private string CreateUri(string path)
+        private static string CreateUri(string path)
         {
             return new Uri(BaseUri, path).AbsoluteUri;
         }

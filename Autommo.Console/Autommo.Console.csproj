@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="CommandLineArguments.cs" />
     <Compile Include="IServer.cs" />
-    <Compile Include="AutommoBootstrapper.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

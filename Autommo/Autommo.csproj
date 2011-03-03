@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutommoBootstrapper.cs" />
     <Compile Include="CharactersModule.cs" />
     <Compile Include="MobsModule.cs" />
     <Compile Include="NancyExtensions.cs" />

@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="AutommoServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Retry.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Autommo.Console\Autommo.Console.csproj">
