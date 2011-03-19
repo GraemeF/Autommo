@@ -1,9 +1,6 @@
 [submodule "packages-submodules/EasyHttp"]
 	path = packages-submodules/EasyHttp
 	url = git@github.com:GraemeF/EasyHttp.git
-[submodule "packages-submodules/Nancy"]
-	path = packages-submodules/Nancy
-	url = git@github.com:GraemeF/Nancy.git
 [submodule "packages-submodules/Gallio"]
 	path = packages-submodules/Gallio
 	url = git@github.com:GraemeF/GallioBin.git

@@ -35,6 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Nancy, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.0.4.0\lib\4.0\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Wcf, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.Hosting.Wcf.0.4.0\lib\4.0\Nancy.Hosting.Wcf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -57,19 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Autommo\Autommo.csproj">
       <Project>{144C2CAF-3FC8-49ED-8B4B-A92D1F556BB3}</Project>
       <Name>Autommo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\packages-submodules\Nancy\src\Nancy.Hosting.Wcf\Nancy.Hosting.Wcf.csproj">
-      <Project>{8B7EC9F2-44D2-426C-AE7F-801DC3238259}</Project>
-      <Name>Nancy.Hosting.Wcf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\packages-submodules\Nancy\src\Nancy\Nancy.csproj">
-      <Project>{34576216-0DCA-4B0F-A0DC-9075E75A676F}</Project>
-      <Name>Nancy</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
