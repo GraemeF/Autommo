@@ -35,6 +35,15 @@
     <Reference Include="Should.Fluent">
       <HintPath>..\..\packages\ShouldFluent.1.1.12.0\lib\Should.Fluent.dll</HintPath>
     </Reference>
+    <Reference Include="StoryQ">
+      <HintPath>..\..\packages\StoryQ.2.0.5\lib\StoryQ.dll</HintPath>
+    </Reference>
+    <Reference Include="StoryQ.pt-BR">
+      <HintPath>..\..\packages\StoryQ.2.0.5\lib\StoryQ.pt-BR.dll</HintPath>
+    </Reference>
+    <Reference Include="StoryQ.sr-SP">
+      <HintPath>..\..\packages\StoryQ.2.0.5\lib\StoryQ.sr-SP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,11 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Admin.feature</DependentUpon>
-    </Compile>
+    <Compile Include="Admin.cs" />
     <Compile Include="Combat.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -72,10 +77,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Admin.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Admin.feature.cs</LastGenOutput>
-    </None>
     <None Include="App.config" />
     <None Include="Combat.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

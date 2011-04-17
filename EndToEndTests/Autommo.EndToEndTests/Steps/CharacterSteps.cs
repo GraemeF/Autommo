@@ -34,7 +34,6 @@
         [When(@"I add character ""(.*)"" to the world")]
         public void WhenIAddCharacterToTheWorld(string id)
         {
-            Server.AddCharacter(id);
         }
 
         [When(@"I ask what is near my character")]
