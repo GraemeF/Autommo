@@ -4,21 +4,22 @@
 
     using Autommo.Game.Interfaces;
 
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using NSubstitute;
 
     using Should.Fluent;
 
-    using Xunit;
-
     #endregion
 
+    [TestClass]
     public class MeleeAttackerTests
     {
         private readonly IUnit _newTarget = Substitute.For<IUnit>();
 
         private readonly MeleeAttacker _test = new MeleeAttacker();
 
-        [Fact]
+        [TestMethod]
         public void Attack_GivenATarget_EntersCombat()
         {
             _test.Attack(_newTarget);
@@ -26,7 +27,7 @@
             _test.IsAttacking.Should().Be.True();
         }
 
-        [Fact]
+        [TestMethod]
         public void Attack_GivenATarget_TargetsTarget()
         {
             _test.Attack(_newTarget);
@@ -34,7 +35,7 @@
             _test.Target.Should().Be.SameAs(_newTarget);
         }
 
-        [Fact]
+        [TestMethod]
         public void GettingIsAttacking_Initially_ReturnsFalse()
         {
             _test.IsAttacking.Should().Be.False();

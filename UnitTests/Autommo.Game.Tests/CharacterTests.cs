@@ -7,16 +7,17 @@
 
     using Autommo.Game.Interfaces;
 
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using NSubstitute;
 
     using ReactiveUI;
 
     using Should.Fluent;
 
-    using Xunit;
-
     #endregion
 
+    [TestClass]
     public class CharacterTests
     {
         private readonly IAutoAttacker _meleeAttacker = Substitute.For<IAutoAttacker>();
@@ -38,7 +39,7 @@
             _test = new Character(new CharacterId("test"), _meleeAttacker);
         }
 
-        [Fact]
+        [TestMethod]
         public void Attack_GivenATarget_AttacksTarget()
         {
             _test.Attack(_newTarget);
@@ -46,7 +47,7 @@
             _meleeAttacker.Received().Attack(_newTarget);
         }
 
-        [Fact]
+        [TestMethod]
         public void GettingCombatStatus_WhenAttackerIsAttacking_ReturnsFighting()
         {
             AttackerBeginsAttacking();
@@ -54,7 +55,7 @@
             _test.CombatStatus.Should().Equal(CombatStatus.Fighting);
         }
 
-        [Fact]
+        [TestMethod]
         public void GettingCombatStatus_WhenNotAttacking_ReturnsIdle()
         {
             AttackerStopsAttacking();
@@ -62,13 +63,13 @@
             _test.CombatStatus.Should().Equal(CombatStatus.Idle);
         }
 
-        [Fact]
+        [TestMethod]
         public void GettingTarget__ReturnsMeleeTarget()
         {
             _test.Target.Should().Be.SameAs(_originalTarget);
         }
 
-        [Fact]
+        [TestMethod]
         public void Target_WhenMeleeTargetChanges_IsChanged()
         {
             bool changed = false;
@@ -91,7 +92,7 @@
             _meleeAttackerPropertyChanged.
                 OnNext(new ObservedChange<object, object>
                            {
-                               PropertyName = "IsAttacking", 
+                               PropertyName = "IsAttacking",
                                Value = newValue
                            });
         }
@@ -108,7 +109,7 @@
             _meleeAttackerPropertyChanged.
                 OnNext(new ObservedChange<object, object>
                            {
-                               PropertyName = "Target", 
+                               PropertyName = "Target",
                                Value = newTarget
                            });
         }

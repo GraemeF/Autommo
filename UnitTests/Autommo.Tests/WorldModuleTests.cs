@@ -2,19 +2,20 @@
 {
     #region Using Directives
 
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using Nancy;
 
     using Should.Fluent;
 
-    using Xunit;
-
     #endregion
 
+    [TestClass]
     public class WorldModuleTests
     {
         private readonly WorldModule _test = new WorldModule();
 
-        [Fact]
+        [TestMethod]
         public void GetStatus__ReturnsOKStatus()
         {
             _test.InvokeRouteForRequest(new Request("GET", "http://localhost/status", "http"), "/status").
