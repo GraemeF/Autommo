@@ -35,13 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nancy, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.0.4.0\lib\4.0\Nancy.dll</HintPath>
+      <HintPath>..\packages\Nancy.0.5.0\lib\4.0\Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Hosting.Wcf, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy.Hosting.Wcf, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.Hosting.Wcf.0.4.0\lib\4.0\Nancy.Hosting.Wcf.dll</HintPath>
+      <HintPath>..\packages\Nancy.Hosting.Wcf.0.5.0\lib\4.0\Nancy.Hosting.Wcf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

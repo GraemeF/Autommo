@@ -8,7 +8,7 @@
     using System.Linq;
 
     using Nancy;
-    using Nancy.Routing;
+    using Nancy.IO;
 
     using Newtonsoft.Json;
 
@@ -25,9 +25,9 @@
                 return JsonConvert.DeserializeObject<TContents>(reader.ReadToEnd());
         }
 
-        public static Response InvokeRouteForRequest(this NancyModule module, 
-                                                     Request request, 
-                                                     string route, 
+        public static Response InvokeRouteForRequest(this NancyModule module,
+                                                     Request request,
+                                                     string route,
                                                      DynamicDictionary parameters = null)
         {
             module.Context = new NancyContext();
@@ -38,9 +38,9 @@
                 Action(parameters);
         }
 
-        public static Stream ToRequestBody<TContents>(this TContents contents)
+        public static RequestStream ToRequestBody<TContents>(this TContents contents)
         {
-            var memory = new MemoryStream();
+            var memory = new RequestStream(1024L, false);
             var writer = new StreamWriter(memory);
             string serializedObject = JsonConvert.SerializeObject(contents);
             writer.Write(serializedObject);
