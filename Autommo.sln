@@ -28,7 +28,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autommo.Game", "Autommo.Gam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autommo.Game.Tests", "UnitTests\Autommo.Game.Tests\Autommo.Game.Tests.csproj", "{F7D4CF3A-1F39-4342-AEB5-909FFA52A939}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F5EEE222-DE1D-4903-869A-B433009FE37B}"
+	ProjectSection(SolutionItems) = preProject
+		Autommo.vsmdi = Autommo.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Autommo.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -183,6 +193,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D97BB86F-A959-4F05-B8B7-9D30C534B3B5} = {2DDAC3A3-4C9B-4EAA-91C0-D8CA59AF11E1}
 		{323434E8-D5DC-4C6C-A4C0-A9B4D20DD758} = {2DDAC3A3-4C9B-4EAA-91C0-D8CA59AF11E1}
+		{F5EEE222-DE1D-4903-869A-B433009FE37B} = {2DDAC3A3-4C9B-4EAA-91C0-D8CA59AF11E1}
 		{458B78CD-7F76-47C6-9DEE-528A39A741C2} = {F998D4D7-E85B-4082-8D5C-E935DDC42DB1}
 		{F7D4CF3A-1F39-4342-AEB5-909FFA52A939} = {F998D4D7-E85B-4082-8D5C-E935DDC42DB1}
 		{9239DA70-1736-4291-8D18-266999E54445} = {D9A64AF3-20AC-4450-877A-7B3B8DEE4885}
