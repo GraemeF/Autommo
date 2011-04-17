@@ -4,8 +4,6 @@
 
     using System;
 
-    using Autommo.EndToEndTestEntities;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using StoryQ;
@@ -13,14 +11,12 @@
     #endregion
 
     [TestClass]
-    public class Admin
+    public class Admin : ServerTestBase
     {
         private readonly Feature _feature = new Story("Admin")
             .InOrderTo("edit the world")
             .AsA("administrator")
             .IWant("to change what is in it");
-
-        private readonly AutommoServer _server = new AutommoServer();
 
         [TestMethod]
         public void AddANewCharacter()
@@ -34,15 +30,9 @@
                 .Execute();
         }
 
-        [TestCleanup]
-        public void Cleanup()
-        {
-            _server.Dispose();
-        }
-
         private void IAddCharacterNamed_ToTheWorld(string id)
         {
-            _server.AddCharacter(id);
+            Server.AddCharacter(id);
         }
 
         private void ICanGetTheCharacterNamed_(string obj)

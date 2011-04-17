@@ -47,50 +47,18 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="TechTalk.SpecFlow, Version=1.6.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\SpecFlow.1.6.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs" />
-    <Compile Include="Combat.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Combat.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Movement.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Movement.feature</DependentUpon>
-    </Compile>
+    <Compile Include="Combat.cs" />
+    <Compile Include="Movement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\CharacterSteps.cs" />
-    <Compile Include="EventDefinitions.cs" />
-    <Compile Include="Steps\ServerSteps.cs" />
-    <Compile Include="Steps\MobSteps.cs" />
-    <Compile Include="Steps\MovementSteps.cs" />
-    <Compile Include="Survey.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Survey.feature</DependentUpon>
-    </Compile>
+    <Compile Include="ServerTestBase.cs" />
+    <Compile Include="Survey.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Combat.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Combat.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Movement.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Movement.feature.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
-    <None Include="Survey.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Survey.feature.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Autommo.Dto\Autommo.Dto.csproj">
